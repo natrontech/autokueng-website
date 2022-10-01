@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { classNames } from "../../lib/design";
+import Link from "next/link";
 
 const  HeroCard = ({ data }: any) => {
     const [show, setShow] = useState(false);
@@ -38,8 +39,6 @@ const  HeroCard = ({ data }: any) => {
                                         <ChevronDownIcon
                                             className={classNames(show ? 'text-gray-500 rotate-180' : 'text-blue-500', 'h-5 w-5')} aria-hidden="true"
                                         />
-
-
                                     </a>
 
                                     <Transition
@@ -79,12 +78,12 @@ const  HeroCard = ({ data }: any) => {
                                         </Popover.Panel>
                                     </Transition>
                                 </Popover>
-                                <a
+                                <Link
                                     href="/kontakt"
                                     className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-500 bg-opacity-80 sm:hover:bg-opacity-90 sm:px-8"
                                 >
                                     Kontakt
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
