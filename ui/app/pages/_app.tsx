@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [])
 
   return (
-    <div className='select-none'>
+    <div>
       <Head>
         <title>Auto Küng AG</title>
         <link rel="manifest" href="/manifest.json" />

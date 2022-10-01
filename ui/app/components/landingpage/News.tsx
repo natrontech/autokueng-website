@@ -2,20 +2,13 @@
 import { useEffect, useState } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css'
 import { useUserContext } from '../../contexts/userContext';
-import { ClientResponseError, Record } from 'pocketbase';
+import { ClientResponseError } from 'pocketbase';
 import { parseImageUrl } from '../../lib/parser';
-import Image from 'next/image';
-
-interface News extends Record {
-    title: string;
-    content: string;
-    image: string;
-    category: string;
-}
+import { News } from '../../lib/interfaces';
 
 const News = () => {
 
-    const { user, loading, client }: any = useUserContext();
+    const { client }: any = useUserContext();
     const [news, setNews] = useState<News[]>([]);
 
     useEffect(() => {
@@ -27,9 +20,10 @@ const News = () => {
                     console.log(error);
                 });
                 setNews(records);
+
             }
-        )();
-    }, [client.records, loading]);
+        )()
+    }, [client.records]);
 
     return (
         <div className="relative bg-gray-50 px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28">

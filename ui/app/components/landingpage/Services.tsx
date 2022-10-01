@@ -61,7 +61,7 @@ const Services = () => {
             <div className="text-blue-500 flow-root mt-8 lg:mt-10">
                 <div className="p-4 grid grid-cols-1 sm:grid-cols-4 gap-6">
                     {services.map((services) => (
-                        <div className="block cursor-default select-none sm:hover:scale-105 hover:active:scale-105 transition-all duration-150 ease-in-out py-10 px-10 bg-white rounded-lg shadow-lg text-lg text-center" key={services.id}>
+                        <div className="block cursor-default select-none sm:hover:scale-105 hover:active:scale-105 transition-all duration-150 ease-in-out py-6 px-10 bg-white rounded-lg shadow-lg text-lg text-center" key={services.id}>
                             <div className="text">
                                 <FontAwesomeIcon icon={services.icon} className="w-14 mx-auto mb-2" />
                             </div>

@@ -15,6 +15,7 @@ const  HeroCard = ({ data }: any) => {
             <div className=" ">
                 <div className="relative shadow-xl">
                     <div className="absolute inset-0">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                             className="h-full w-full object-cover"
                             src="/images/background/background_old.jpg"
