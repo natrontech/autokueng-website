@@ -115,9 +115,6 @@ const Login = () => {
                         loader={({ src }) => src}
                     />
                 </div>
-                <Heading>
-                    Pocketbase Next.js Template
-                </Heading>
                 <div
                     className="relative h-96"
                 >

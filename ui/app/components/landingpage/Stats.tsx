@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useUserContext } from '../../contexts/userContext'
 import { ClientResponseError } from 'pocketbase';
-import { MemberType, VehicleType } from '../../lib/interfaces';
+import { MemberInterface, VehicleInterface } from '../../lib/interfaces';
 
 interface Props {
-    members: MemberType[];
-    vehicles: VehicleType[];
+    members: MemberInterface[];
+    vehicles: VehicleInterface[];
 }
 
 const Stats = (props: Props) => {
