@@ -22,7 +22,7 @@ const News = (props: Props) => {
                 </div>
                 <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
                     {props.news?.length == 1 && <div></div>}
-                    {props.news?.length && props.news.map((newsItem) => (
+                    {props.news?.length && props.news.slice(0, 3).map((newsItem) => (
                         <div key={newsItem?.title} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
                             <div className="flex-shrink-0">
                                 {
