@@ -10,7 +10,7 @@ export default function Layout(props: any) {
     const { user, loading }: any = useUserContext();
 
     return (
-        <div className="h-screen scrollbar-hide">
+        <div className="flex flex-col h-screen">
             <Navigation />
 
             <main className={classNames(
