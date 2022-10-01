@@ -1,20 +1,20 @@
 import { Record } from 'pocketbase';
 
-interface News extends Record {
+interface NewsType extends Record {
     title: string;
     content: string;
     image: string;
     category: string;
 }
 
-interface Member extends Record {
+interface MemberType extends Record {
     name: string;
     role: string;
     quote: string;
     image: string;
 }
 
-interface Vehicle extends Record {
+interface VehicleType extends Record {
     name: string;
     description: string;
     km: number;
@@ -23,7 +23,7 @@ interface Vehicle extends Record {
 }
 
 export type {
-    News,
-    Member,
-    Vehicle
+    NewsType,
+    MemberType,
+    VehicleType
 };

@@ -4,12 +4,12 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { useUserContext } from '../../contexts/userContext';
 import { ClientResponseError } from 'pocketbase';
 import { parseImageUrl } from '../../lib/parser';
-import { News } from '../../lib/interfaces';
+import { NewsType } from '../../lib/interfaces';
 
 const News = () => {
 
     const { client }: any = useUserContext();
-    const [news, setNews] = useState<News[]>([]);
+    const [news, setNews] = useState<NewsType[]>([]);
 
     useEffect(() => {
         (

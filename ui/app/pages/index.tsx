@@ -6,6 +6,7 @@ import HeroCard from '../components/landingpage/HeroCard';
 import News from '../components/landingpage/News';
 import Services from '../components/landingpage/Services';
 import Stats from '../components/landingpage/Stats';
+import Testmonial from '../components/landingpage/Testmonial';
 import { useUserContext } from '../contexts/userContext';
 
 const Home: NextPage = () => {
@@ -20,6 +21,7 @@ const Home: NextPage = () => {
       <About />
       <Services />
       <Stats />
+      <Testmonial />
     </>
   )
 }

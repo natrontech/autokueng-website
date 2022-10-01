@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react'
 import { useUserContext } from '../../contexts/userContext'
-import { ClientResponseError, Record } from 'pocketbase';
-import { Member, News, Vehicle } from '../../lib/interfaces';
+import { ClientResponseError } from 'pocketbase';
+import { MemberType, VehicleType } from '../../lib/interfaces';
 
 const Stats = () => {
 
     const { client }: any = useUserContext()
 
-    const [members, setMembers] = useState<Member[]>([]);
-    const [vehicles, setVehicles] = useState<Vehicle[]>([])
+    const [members, setMembers] = useState<MemberType[]>([]);
+    const [vehicles, setVehicles] = useState<VehicleType[]>([])
 
     useEffect(() => {
         (
