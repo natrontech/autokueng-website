@@ -3,35 +3,12 @@ import { useUserContext } from '../../contexts/userContext'
 import { ClientResponseError } from 'pocketbase';
 import { MemberType, VehicleType } from '../../lib/interfaces';
 
-const Stats = () => {
+interface Props {
+    members: MemberType[];
+    vehicles: VehicleType[];
+}
 
-    const { client }: any = useUserContext()
-
-    const [members, setMembers] = useState<MemberType[]>([]);
-    const [vehicles, setVehicles] = useState<VehicleType[]>([])
-
-    useEffect(() => {
-        (
-            async () => {
-                const records = await client.records.getFullList('members', 200 /* batch size */, {
-                    sort: '-created',
-                }).catch((error: ClientResponseError) => {
-                    console.log(error);
-                });
-                setMembers(records)
-            }
-        )(),
-        (
-            async () => {
-                const records = await client.records.getFullList('vehicles', 200 /* batch size */, {
-                    sort: '-created',
-                }).catch((error: ClientResponseError) => {
-                    console.log(error);
-                });
-                setVehicles(records);
-            }
-        )()
-    }, [client.records])
+const Stats = (props: Props) => {
 
     return(
         <div className="bg-gray-50 pt-12 sm:pt-16">
@@ -51,7 +28,7 @@ const Stats = () => {
                             <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Mitarbeitende</dt>
                             <dd id="members" className="order-1 text-5xl font-extrabold text-blue-500">
                                 {
-                                    members?.length
+                                    props.members?.length
                                 }
                             </dd>
                             </div>
@@ -63,7 +40,7 @@ const Stats = () => {
                             <dt className="order-2 mt-2 text-lg leading-6 font-medium text-gray-500">Fahrzeuge</dt>
                             <dd className="order-1 text-5xl font-extrabold text-blue-500">
                                 {
-                                    vehicles?.length
+                                    props.vehicles?.length
                                 }
                             </dd>
                             </div>

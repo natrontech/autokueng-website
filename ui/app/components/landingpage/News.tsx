@@ -1,28 +1,12 @@
-
-import { useEffect, useState } from 'react';
 import 'react-loading-skeleton/dist/skeleton.css'
-import { useUserContext } from '../../contexts/userContext';
-import { ClientResponseError } from 'pocketbase';
 import { parseImageUrl } from '../../lib/parser';
 import { NewsType } from '../../lib/interfaces';
 
-const News = () => {
+interface Props {
+    news: NewsType[]
+}
 
-    const { client }: any = useUserContext();
-    const [news, setNews] = useState<NewsType[]>([]);
-
-    useEffect(() => {
-        (
-            async () => {
-                const records = await client.records.getFullList('news', 200 /* batch size */, {
-                    sort: '-created',
-                }).catch((error: ClientResponseError) => {
-                    console.log(error);
-                });
-                setNews(records);
-            }
-        )()
-    }, [client.records]);
+const News = (props: Props) => {
 
     return (
         <div className="relative bg-gray-50 px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28 -z-10">
@@ -37,8 +21,8 @@ const News = () => {
                     </p>
                 </div>
                 <div className="mx-auto mt-12 grid max-w-lg gap-5 lg:max-w-none lg:grid-cols-3">
-                    {news?.length == 1 && <div></div>}
-                    {news?.length && news.map((newsItem) => (
+                    {props.news?.length == 1 && <div></div>}
+                    {props.news?.length && props.news.map((newsItem) => (
                         <div key={newsItem?.title} className="flex flex-col overflow-hidden rounded-lg shadow-lg">
                             <div className="flex-shrink-0">
                                 {

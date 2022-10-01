@@ -250,7 +250,7 @@ func InitCollections() {
 					},
 					{
 						"id": "yzsvuj8g",
-						"name": "field",
+						"name": "image",
 						"type": "file",
 						"system": false,
 						"required": true,
@@ -450,6 +450,19 @@ func InitCollections() {
 								"image/gif"
 							],
 							"thumbs": []
+						}
+					},
+					{
+						"id": "j0vmhdhb",
+						"name": "description",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
 						}
 					}
 				]

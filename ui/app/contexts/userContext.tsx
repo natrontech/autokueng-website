@@ -37,15 +37,16 @@ export const UserContextProvider = ({ children }: Props) => {
                     throw error;
                 })
         }
-        checkAuth()
-            .catch((error) => {
-                logout(true)
-                console.log(error);
-            })
-            .finally(() => {
-                setLoading(false);
-                setReload(!reload);
-            })
+        setLoading(false);
+        // checkAuth()
+        //     .catch((error) => {
+        //         logout(true)
+        //         console.log(error);
+        //     })
+        //     .finally(() => {
+        //         setLoading(false);
+        //         setReload(!reload);
+        //     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
