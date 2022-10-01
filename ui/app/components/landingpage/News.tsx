@@ -49,11 +49,14 @@ const News = () => {
                             <div className="flex-shrink-0">
                                 {
                                     newsItem?.image && (
-                                        <img
-                                            className="h-48 w-full object-cover"
-                                            src={parseImageUrl(newsItem)}
-                                            alt=""
-                                        />
+                                        <>
+                                            {/* eslint-disable-next-line @next/next/no-img-element */}
+                                            <img
+                                                className="h-48 w-full object-cover"
+                                                src={parseImageUrl(newsItem)}
+                                                alt=""
+                                            />
+                                        </>
                                     )
                                 }
                             </div>
