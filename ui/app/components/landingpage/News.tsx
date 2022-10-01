@@ -1,9 +1,9 @@
 import 'react-loading-skeleton/dist/skeleton.css'
 import { parseImageUrl } from '../../lib/parser';
-import { NewsType } from '../../lib/interfaces';
+import { NewsInterface } from '../../lib/interfaces';
 
 interface Props {
-    news: NewsType[]
+    news: NewsInterface[]
 }
 
 const News = (props: Props) => {

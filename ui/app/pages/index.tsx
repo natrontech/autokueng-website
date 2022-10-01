@@ -10,7 +10,7 @@ import Services from '../components/landingpage/Services';
 import Stats from '../components/landingpage/Stats';
 import Testmonial from '../components/landingpage/Testmonial';
 import { useUserContext } from '../contexts/userContext';
-import { MemberType, NewsType, VehicleType } from '../lib/interfaces';
+import { MemberInterface, NewsInterface, VehicleInterface } from '../lib/interfaces';
 
 const Home: NextPage = () => {
 
@@ -19,29 +19,29 @@ const Home: NextPage = () => {
 
   const { client }: any = useUserContext()
 
-  const [news, setNews] = useState<NewsType[]>([]);
-  const [members, setMembers] = useState<MemberType[]>([]);
-  const [vehicles, setVehicles] = useState<VehicleType[]>([])
+  const [news, setNews] = useState<NewsInterface[]>([]);
+  const [members, setMembers] = useState<MemberInterface[]>([]);
+  const [vehicles, setVehicles] = useState<VehicleInterface[]>([])
 
   useEffect(() => {
     (
       async () => {
-        const memberRecords = await client.records.getFullList('members', 200 /* batch size */, {
+        const records = await client.records.getFullList('members', 200 /* batch size */, {
           sort: '-created',
         }).catch((error: ClientResponseError) => {
           console.log(error);
         });
-        setMembers(memberRecords)
+        setMembers(records)
       }
     )(),
       (
         async () => {
-          const vehicleRecords = await client.records.getFullList('vehicles', 200 /* batch size */, {
+          const records = await client.records.getFullList('vehicles', 200 /* batch size */, {
             sort: '-created',
           }).catch((error: ClientResponseError) => {
             console.log(error);
           });
-          setVehicles(vehicleRecords)
+          setVehicles(records)
         }
       )(),
       (

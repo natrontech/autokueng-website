@@ -1,14 +1,14 @@
 import Api from "../../config/Api";
 import { useEffect, useState } from 'react'
 import Skeleton from "react-loading-skeleton";
-import { MemberType } from "../../lib/interfaces";
+import { MemberInterface } from "../../lib/interfaces";
 import { ClientResponseError } from 'pocketbase';
 import { useUserContext } from "../../contexts/userContext";
 import { parseImageUrl } from "../../lib/parser";
 
 const Testmonial = () => {
     const { client }: any = useUserContext()
-    const [members, setMembers] = useState<MemberType[]>([]);
+    const [members, setMembers] = useState<MemberInterface[]>([]);
 
     useEffect(() => {
         (
