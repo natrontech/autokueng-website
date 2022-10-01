@@ -5,7 +5,7 @@ import ProfileSettingsForm from "../components/profile/ProfileSettingsForm";
 const Profile: NextPage = () => {
     return (
         <div>
-            <Heading>Profile</Heading>
+            <Heading title="Einstellungen" subtitle="Profil Einstellungen" />
             <div>
                 <ProfileSettingsForm />
             </div>
