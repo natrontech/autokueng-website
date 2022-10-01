@@ -25,7 +25,6 @@ export const UserContextProvider = ({ children }: Props) => {
     const [componentLoading, setComponentLoading] = useState(false);
     const [error, setError] = useState(null);
     const [reload, setReload] = useState(false);
-    const router = useRouter();
     const client = new PocketBase(config.ENV_API_URL || "http://127.0.0.1:8090");
 
     useEffect(() => {
@@ -38,15 +37,16 @@ export const UserContextProvider = ({ children }: Props) => {
                     throw error;
                 })
         }
-        checkAuth()
-            .catch((error) => {
-                logout(true)
-                console.log(error);
-            })
-            .finally(() => {
-                setLoading(false);
-                setReload(!reload);
-            })
+        setLoading(false);
+        // checkAuth()
+        //     .catch((error) => {
+        //         logout(true)
+        //         console.log(error);
+        //     })
+        //     .finally(() => {
+        //         setLoading(false);
+        //         setReload(!reload);
+        //     })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -76,7 +76,6 @@ export const UserContextProvider = ({ children }: Props) => {
         if (!noalert || noalert === null) {
             Toast("Logged out", ToastType.success);
         }
-        router.push("/");
     }
 
     const contextValue = {

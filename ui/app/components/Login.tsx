@@ -1,16 +1,16 @@
 import { ArrowRightIcon, EnvelopeIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
-import { useUserContext } from "../../contexts/userContext";
-import { GithubIcon, GoogleIcon } from "../../lib/Icons";
-import { Toast, ToastType } from "../alerts/Toast";
-import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton";
-import InputField from "../general/forms/InputField";
-import Heading from "../general/typo/Heading";
-import SubHeading from "../general/typo/SubHeading";
-import { classNames } from "../../lib/design";
+import { useUserContext } from "../contexts/userContext";
+import { GithubIcon, GoogleIcon } from "../lib/Icons";
+import { Toast, ToastType } from "./alerts/Toast";
+import StyledButton, { StyledButtonType } from "./general/buttons/StyledButton";
+import InputField from "./general/forms/InputField";
+import Heading from "./general/typo/Heading";
+import SubHeading from "./general/typo/SubHeading";
+import { classNames } from "../lib/design";
 import { EnvelopeOpenIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import { ClientResponseError } from 'pocketbase';
-import { validateEmail } from "../../lib/validate";
+import { validateEmail } from "../lib/validate";
 import Image from "next/image";
 
 const Login = () => {

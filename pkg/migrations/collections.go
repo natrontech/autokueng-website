@@ -125,6 +125,19 @@ func InitCollections() {
 							],
 							"thumbs": []
 						}
+					},
+					{
+						"id": "fgag2mle",
+						"name": "category",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
 					}
 				]
 			},
@@ -237,7 +250,7 @@ func InitCollections() {
 					},
 					{
 						"id": "yzsvuj8g",
-						"name": "field",
+						"name": "image",
 						"type": "file",
 						"system": false,
 						"required": true,
@@ -368,6 +381,88 @@ func InitCollections() {
 								"image/gif"
 							],
 							"thumbs": []
+						}
+					}
+				]
+			},
+			{
+				"id": "a4ylg2a4a994obf",
+				"name": "vehicles",
+				"system": false,
+				"listRule": "",
+				"viewRule": "",
+				"createRule": "@request.user.id!=\"\"",
+				"updateRule": "@request.user.id!=\"\"",
+				"deleteRule": "@request.user.id!=\"\"",
+				"schema": [
+					{
+						"id": "bo0csowj",
+						"name": "name",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "czwqtyrj",
+						"name": "km",
+						"type": "number",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null
+						}
+					},
+					{
+						"id": "xaky5f4u",
+						"name": "price",
+						"type": "number",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": 0,
+							"max": null
+						}
+					},
+					{
+						"id": "huancsoa",
+						"name": "image",
+						"type": "file",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"maxSelect": 1,
+							"maxSize": 5242880,
+							"mimeTypes": [
+								"image/jpg",
+								"image/jpeg",
+								"image/png",
+								"image/svg+xml",
+								"image/gif"
+							],
+							"thumbs": []
+						}
+					},
+					{
+						"id": "j0vmhdhb",
+						"name": "description",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
 						}
 					}
 				]
