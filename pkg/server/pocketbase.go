@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/natrongmbh/pocketbase-nextjs-template/pkg/env"
-	"github.com/natrongmbh/pocketbase-nextjs-template/pkg/migrations"
+	"github.com/natrongmbh/autokueng-website/pkg/env"
+	"github.com/natrongmbh/autokueng-website/pkg/migrations"
 	"github.com/pocketbase/pocketbase"
 )
 

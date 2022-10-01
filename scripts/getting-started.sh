@@ -1,17 +1,17 @@
 #!bin/sh
 
-# This script will look for any folder and file with the name "pocketbase-nextjs-template" and replace it with the name of your project
+# This script will look for any folder and file with the name "autokueng-website" and replace it with the name of your project
 
 # get the name of the project
 echo "What is the name of your project?"
 read -r project_name
 
 
-# Find every folder with the name "pocketbase-nextjs-template" and replace it with the name of your project
-find . -type d -name "pocketbase-nextjs-template" -exec sh -c 'mv "$1" "${1/pocketbase-nextjs-template/$2}"' _ {} $project_name \;
+# Find every folder with the name "autokueng-website" and replace it with the name of your project
+find . -type d -name "autokueng-website" -exec sh -c 'mv "$1" "${1/autokueng-website/$2}"' _ {} $project_name \;
 
-# go throug every file content and replace "pocketbase-nextjs-template" with the name of your project
-grep -rl pocketbase-nextjs-template . | xargs sed -i '' "s/pocketbase-nextjs-template/$project_name/g"
+# go throug every file content and replace "autokueng-website" with the name of your project
+grep -rl autokueng-website . | xargs sed -i '' "s/autokueng-website/$project_name/g"
 
 echo "Done!"
 

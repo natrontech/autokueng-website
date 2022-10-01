@@ -35,7 +35,7 @@ jobs:
 
     - name: Build
       run: |
-        go build -v ./cmd/pocketbase-nextjs-template
+        go build -v ./cmd/autokueng-website
 
   ui-build:
     name: Frontend Build

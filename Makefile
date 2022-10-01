@@ -1,7 +1,7 @@
 GOCMD=go
 GOTEST=$(GOCMD) test
 GOVET=$(GOCMD) vet
-BINARY_NAME=pocketbase-nextjs-template
+BINARY_NAME=autokueng-website
 VERSION?=v1.0.0
 SERVICE_PORT?=3000
 DOCKER_REGISTRY?=ghcr.io/natrontechgmbh/ #if set it should finished by /

@@ -51,7 +51,7 @@ const Navigation = () => {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <Image
                     className="rounded-full"
-                    src="/images/logo/pocketbase-nextjs-template-logo.png"
+                    src="/images/logo/autokueng-website-logo.png"
                     alt="Logo"
                     width={46}
                     height={46}

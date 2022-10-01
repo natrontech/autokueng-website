@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/natrongmbh/pocketbase-nextjs-template/pkg/env"
-	"github.com/natrongmbh/pocketbase-nextjs-template/pkg/server"
+	"github.com/natrongmbh/autokueng-website/pkg/env"
+	"github.com/natrongmbh/autokueng-website/pkg/server"
 )
 
 func init() {

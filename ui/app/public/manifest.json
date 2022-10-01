@@ -5,9 +5,9 @@
     "orientation": "portrait",
     "scope": "",
     "start_url": "/",
-    "name": "pocketbase-nextjs-template",
-    "short_name": "pocketbase-nextjs-template",
-    "description": "A Next.js template for Pocketbase",
+    "name": "autokueng-website",
+    "short_name": "autokueng-website",
+    "description": "A website for the autokueng ag",
     "icons": [
         {
             "src": "images/manifest/icon-192x192.png",

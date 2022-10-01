@@ -1,4 +1,4 @@
-module github.com/natrongmbh/pocketbase-nextjs-template
+module github.com/natrongmbh/autokueng-website
 
 go 1.19
 
