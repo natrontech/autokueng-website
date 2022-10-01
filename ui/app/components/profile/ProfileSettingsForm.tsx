@@ -66,7 +66,7 @@ const ProfileSettingsForm = () => {
     }
 
     const handleCancel = () => {
-        router.push("/dashboard");
+        router.push("/");
     }
 
     return (

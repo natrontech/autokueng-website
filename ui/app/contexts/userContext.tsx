@@ -76,7 +76,6 @@ export const UserContextProvider = ({ children }: Props) => {
         if (!noalert || noalert === null) {
             Toast("Logged out", ToastType.success);
         }
-        router.push("/");
     }
 
     const contextValue = {

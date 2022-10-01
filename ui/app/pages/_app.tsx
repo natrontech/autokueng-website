@@ -33,14 +33,14 @@ function MyApp({ Component, pageProps }: AppProps) {
   return (
     <div className='select-none'>
       <Head>
-        <title>Pocketbase Next.js Template</title>
+        <title>Auto Küng AG</title>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="images/manifest/icon-192x192.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=1.0, user-scalable=no"></meta>
         <meta name="apple-mobile-web-app-capable" content="yes"></meta>
         <meta name="apple-mobile-web-app-status-bar-style" content="default"></meta>
         <meta name="theme-color" content="#FFFFFF"></meta>
-        <meta name="description" content="A Template for Pocketbase with Next.js"></meta>
+        <meta name="description" content="Website für die Auto Küng AG"></meta>
       </Head>
       <UserContextProvider>
         <Layout>
