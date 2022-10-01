@@ -71,17 +71,133 @@ func InitCollections() {
 				]
 			},
 			{
-				"id": "74o5ynevh4a1vml",
-				"name": "tests",
+				"id": "0wslyx293f2d754",
+				"name": "news",
 				"system": false,
-				"listRule": null,
-				"viewRule": null,
-				"createRule": null,
-				"updateRule": null,
-				"deleteRule": null,
+				"listRule": "",
+				"viewRule": "",
+				"createRule": "@request.user.id!=\"\"",
+				"updateRule": "@request.user.id!=\"\"",
+				"deleteRule": "@request.user.id!=\"\"",
 				"schema": [
 					{
-						"id": "9ddpluzl",
+						"id": "pgdutn72",
+						"name": "title",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "wlrujpju",
+						"name": "content",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "rpls8ukb",
+						"name": "image",
+						"type": "file",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"maxSelect": 1,
+							"maxSize": 5242880,
+							"mimeTypes": [
+								"image/jpg",
+								"image/jpeg",
+								"image/png",
+								"image/svg+xml",
+								"image/gif"
+							],
+							"thumbs": []
+						}
+					}
+				]
+			},
+			{
+				"id": "022mdh5w178a6ts",
+				"name": "services",
+				"system": false,
+				"listRule": "",
+				"viewRule": "",
+				"createRule": "@request.user.id!=\"\"",
+				"updateRule": "@request.user.id!=\"\"",
+				"deleteRule": "@request.user.id!=\"\"",
+				"schema": [
+					{
+						"id": "n5rub7rh",
+						"name": "title",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "wmv1dlrr",
+						"name": "content",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "nse0bviw",
+						"name": "image",
+						"type": "file",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"maxSelect": 1,
+							"maxSize": 5242880,
+							"mimeTypes": [
+								"image/jpg",
+								"image/jpeg",
+								"image/png",
+								"image/svg+xml",
+								"image/gif"
+							],
+							"thumbs": []
+						}
+					}
+				]
+			},
+			{
+				"id": "ckmo75max0ihu7j",
+				"name": "members",
+				"system": false,
+				"listRule": "",
+				"viewRule": "",
+				"createRule": "@request.user.id!=\"\"",
+				"updateRule": "@request.user.id!=\"\"",
+				"deleteRule": "@request.user.id!=\"\"",
+				"schema": [
+					{
+						"id": "enma0f09",
 						"name": "name",
 						"type": "text",
 						"system": false,
@@ -94,15 +210,164 @@ func InitCollections() {
 						}
 					},
 					{
-						"id": "qhg888db",
-						"name": "version",
-						"type": "number",
+						"id": "ykzsctar",
+						"name": "role",
+						"type": "text",
 						"system": false,
 						"required": true,
 						"unique": false,
 						"options": {
 							"min": null,
-							"max": null
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "h3uyw4gu",
+						"name": "quote",
+						"type": "text",
+						"system": false,
+						"required": false,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "yzsvuj8g",
+						"name": "field",
+						"type": "file",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"maxSelect": 1,
+							"maxSize": 5242880,
+							"mimeTypes": [
+								"image/jpg",
+								"image/jpeg",
+								"image/png",
+								"image/svg+xml",
+								"image/gif"
+							],
+							"thumbs": []
+						}
+					}
+				]
+			},
+			{
+				"id": "310srq3d5dsicpt",
+				"name": "links",
+				"system": false,
+				"listRule": "",
+				"viewRule": "",
+				"createRule": "@request.user.id!=\"\"",
+				"updateRule": "@request.user.id!=\"\"",
+				"deleteRule": "@request.user.id!=\"\"",
+				"schema": [
+					{
+						"id": "upmwxz2d",
+						"name": "title",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "ppudttfl",
+						"name": "description",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "r6tokkw5",
+						"name": "url",
+						"type": "url",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"exceptDomains": null,
+							"onlyDomains": null
+						}
+					},
+					{
+						"id": "wsemuive",
+						"name": "image",
+						"type": "file",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"maxSelect": 1,
+							"maxSize": 5242880,
+							"mimeTypes": [
+								"image/jpg",
+								"image/jpeg",
+								"image/png",
+								"image/svg+xml",
+								"image/gif"
+							],
+							"thumbs": []
+						}
+					}
+				]
+			},
+			{
+				"id": "vsky0miumsnwew0",
+				"name": "gallery",
+				"system": false,
+				"listRule": "",
+				"viewRule": "",
+				"createRule": "@request.user.id!=\"\"",
+				"updateRule": "@request.user.id!=\"\"",
+				"deleteRule": "@request.user.id!=\"\"",
+				"schema": [
+					{
+						"id": "7iorzlhu",
+						"name": "title",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
+					},
+					{
+						"id": "fifh97x7",
+						"name": "image",
+						"type": "file",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"maxSelect": 1,
+							"maxSize": 5242880,
+							"mimeTypes": [
+								"image/jpg",
+								"image/jpeg",
+								"image/png",
+								"image/svg+xml",
+								"image/gif"
+							],
+							"thumbs": []
 						}
 					}
 				]
