@@ -5,6 +5,7 @@ import { useUserContext } from "../contexts/userContext";
 import { ServiceInterface } from "../lib/interfaces";
 import { ClientResponseError } from 'pocketbase';
 import Heading from "../components/general/typo/Heading";
+import ServiceHeroCard from "../components/services/ServiceHeroCard";
 
 const Services: NextPage = () => {
 
@@ -29,6 +30,7 @@ const Services: NextPage = () => {
         <>
             <Heading title="SERVICES" subtitle="Unsere Services und Dienstleistungen" />
             <Service services={services} />
+            <ServiceHeroCard />
         </>
     )
 
