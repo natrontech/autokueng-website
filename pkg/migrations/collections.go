@@ -125,6 +125,19 @@ func InitCollections() {
 							],
 							"thumbs": []
 						}
+					},
+					{
+						"id": "fgag2mle",
+						"name": "category",
+						"type": "text",
+						"system": false,
+						"required": true,
+						"unique": false,
+						"options": {
+							"min": null,
+							"max": null,
+							"pattern": ""
+						}
 					}
 				]
 			},

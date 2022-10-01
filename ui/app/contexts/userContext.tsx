@@ -25,7 +25,6 @@ export const UserContextProvider = ({ children }: Props) => {
     const [componentLoading, setComponentLoading] = useState(false);
     const [error, setError] = useState(null);
     const [reload, setReload] = useState(false);
-    const router = useRouter();
     const client = new PocketBase(config.ENV_API_URL || "http://127.0.0.1:8090");
 
     useEffect(() => {

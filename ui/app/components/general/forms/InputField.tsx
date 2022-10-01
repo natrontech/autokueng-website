@@ -19,7 +19,7 @@ const InputField = (props: InputFieldProps) => {
             props.disabled ? "bg-gray-100 text-gray-400" : "bg-gray-200",
             "mb-2 relative block  focus-within:bg-gray-300 w-full group rounded-sm transition-all duration-150 ease-in-out uppercase"
         )}>
-            <label className="block pt-2 pl-3 text-xs font-GilroyMedium text-gray-600 uppercase" htmlFor={props.name}>
+            <label className="block pt-2 pl-3 text-xs font-medium text-gray-600 uppercase" htmlFor={props.name}>
                 {props.icon && <props.icon className="h-4 w-4 inline mr-2 group-focus-within:text-gray-900 transition-all duration-150 ease-in-out" />}
                 {
                     props.required ?

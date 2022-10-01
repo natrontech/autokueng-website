@@ -9,14 +9,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        'sans': ['Gilroy-Regular', ...defaultTheme.fontFamily.sans],
-        GilroyRegular: ['Gilroy-Regular'],
-        GilroyMedium: ['Gilroy-Medium'],
-        GilroyLight: ['Gilroy-Light'],
-        GilroyHeavy: ['Gilroy-Heavy'],
-        GilroyBold: ['Gilroy-Bold'],
-      },
       animation: {
         wiggle: 'wiggle 1s ease-in-out infinite',
       },
