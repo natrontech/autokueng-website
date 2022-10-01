@@ -78,12 +78,13 @@ const  HeroCard = ({ data }: any) => {
                                         </Popover.Panel>
                                     </Transition>
                                 </Popover>
-                                <Link
+                                {/* eslint-disable-next-line */}
+                                <a
                                     href="/kontakt"
                                     className="flex items-center justify-center px-4 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-blue-500 bg-opacity-80 sm:hover:bg-opacity-90 sm:px-8"
                                 >
                                     Kontakt
-                                </Link>
+                                </a>
                             </div>
                         </div>
                     </div>
