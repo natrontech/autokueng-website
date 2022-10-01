@@ -11,11 +11,7 @@ export default function Layout(props: any) {
 
     return (
         <div className="h-screen scrollbar-hide">
-            {
-                user && !loading ? (
-                    <Navigation />
-                ) : null
-            }
+            <Navigation />
 
             <main className={classNames(
                 user && !loading ? "pl-28 pt-10 pr-10" : "pt-0",
@@ -25,11 +21,7 @@ export default function Layout(props: any) {
                 {React.cloneElement(props.children)}
             </main>
 
-            {
-                user && !loading ? (
-                    <Footer />
-                ) : null
-            }
+            <Footer />
 
             {
                 loading ? <Loading /> : null

@@ -9,18 +9,9 @@ const Home: NextPage = () => {
   const {user, loading}: any = useUserContext();
   const router = useRouter();
 
-  if (user) {
-    router.push('/dashboard');
-  }
-
   return (
-    <div>
-      {
-        !user && !loading && (
-          <Login />
-        )
-      }
-    </div>
+    <>
+    </>
   )
 }
 
