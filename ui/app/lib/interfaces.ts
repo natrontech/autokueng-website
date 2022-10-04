@@ -28,9 +28,15 @@ interface ServiceInterface extends Record {
     image: string;
 }
 
+interface ImageInterface extends Record {
+    original: string;
+    thumbnail: string;
+}
+
 export type {
     NewsInterface,
     MemberInterface,
     VehicleInterface,
-    ServiceInterface
+    ServiceInterface,
+    ImageInterface
 };
