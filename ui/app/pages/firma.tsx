@@ -7,6 +7,7 @@ import { ImageInterface, MemberInterface } from "../lib/interfaces";
 import { useUserContext } from "../contexts/userContext";
 import { ClientResponseError } from "pocketbase";
 import { parseImageUrl, parseImageUrlSpecific } from "../lib/parser";
+import Team from "../components/firma/Team";
 
 const Firma: NextPage = () => {
 
@@ -36,12 +37,23 @@ const Firma: NextPage = () => {
                 // typecast to ImageInterface
                 setImages(parsedRecords as ImageInterface[])
             }
+        )(),
+        (
+            async () => {
+                const records = await client.records.getFullList('members', 200 /* batch size */, {
+                    sort: '-created',
+                }).catch((error: ClientResponseError) => {
+                    console.log(error);
+                });
+                setMembers(records)
+            }
         )()
     }, [client.records])
 
     return (
         <div>
             <Heading title="FIRMA" subtitle="Unsere Firma im Überblick" />
+            <Team members={members} />
             <HeaderSection theme="Unsere Bilder" title="GALERIE" description="Eindrücke des Alltages" />
             <div
                 className="container mx-auto px-4"
