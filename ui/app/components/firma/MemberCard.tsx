@@ -8,6 +8,7 @@ const MemberCard = ({ member }: {member: MemberInterface}) => {
                 className="space-y-4 my-4"
             >
                 <div className="aspect-w-3 aspect-h-2">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img className="object-cover shadow-lg rounded-lg" src={parseImageUrl(member)} alt="" />
                 </div>
 
