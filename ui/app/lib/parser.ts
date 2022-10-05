@@ -8,3 +8,7 @@ export const parseUserAvatarUrl = (userObj: User) => {
 export const parseImageUrl = (record: Record) => {
     return Api.getUri() + "/files/" + record?.["@collectionId"] + "/" + record?.id + "/" + record?.image;
 }
+
+export const parseImageUrlSpecific = (record: Record, image: string) => {
+    return Api.getUri() + "/files/" + record?.["@collectionId"] + "/" + record?.id + "/" + image;
+}
