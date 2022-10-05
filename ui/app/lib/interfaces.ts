@@ -33,10 +33,18 @@ interface ImageInterface extends Record {
     thumbnail: string;
 }
 
+interface LinkInterface extends Record {
+    title: string
+    description: string
+    url: string
+    image: string
+}
+
 export type {
     NewsInterface,
     MemberInterface,
     VehicleInterface,
     ServiceInterface,
-    ImageInterface
+    ImageInterface,
+    LinkInterface
 };
