@@ -1,6 +1,7 @@
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import Api from "../../config/Api";
 import Heading from "../general/typo/Heading";
 
 const ContactForm = () => {
@@ -17,7 +18,31 @@ const ContactForm = () => {
     async function handleSubmit(event: any) {
         event.preventDefault();
 
+        // TODO: fix this mess
+        const firstName: HTMLElement | null = document.getElementById("firstName").value;
+        const lastName: HTMLElement | null = document.getElementById("lastName").value;
+        const email: HTMLElement | null = document.getElementById("email").value;
+        const phone: HTMLElement | null = document.getElementById("phone").value;
+        const subject: HTMLElement | null = document.getElementById("subject").value;
+        const message: HTMLElement | null = document.getElementById("message").value;
 
+
+        const body = {
+            "firstname": firstName,
+            "lastname": lastName,
+            "email": email,
+            "phone": phone,
+            "subject": subject,
+            "message": message,
+            "g-recaptcha-response": captchaCode
+        }
+
+        Api.post('/api/contactmail', body)
+            .then((response) => {
+                console.log(response);
+            }).catch((error) => {
+                console.log(error);
+            });
     }
 
     return (
