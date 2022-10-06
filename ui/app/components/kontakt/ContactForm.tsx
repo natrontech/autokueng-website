@@ -1,11 +1,17 @@
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import Api from "../../config/Api";
 import Heading from "../general/typo/Heading";
 
 const ContactForm = () => {
     const [captchaCode, setCaptchaCode] = useState("");
+    const firstNameRef = useRef<HTMLInputElement>(null);
+    const lastNameRef = useRef<HTMLInputElement>(null);
+    const emailRef = useRef<HTMLInputElement>(null);
+    const phoneRef = useRef<HTMLInputElement>(null);
+    const subjectRef = useRef<HTMLInputElement>(null);
+    const messageRef = useRef<HTMLTextAreaElement>(null);
 
     const onReCAPTCHAChange = (captchaCode: string) => {
         if (!captchaCode) {
@@ -19,23 +25,25 @@ const ContactForm = () => {
         event.preventDefault();
 
         // TODO: fix this mess
-        const firstName: HTMLElement | null = document.getElementById("firstName").value;
-        const lastName: HTMLElement | null = document.getElementById("lastName").value;
-        const email: HTMLElement | null = document.getElementById("email").value;
-        const phone: HTMLElement | null = document.getElementById("phone").value;
-        const subject: HTMLElement | null = document.getElementById("subject").value;
-        const message: HTMLElement | null = document.getElementById("message").value;
+        const firstName: HTMLInputElement | null = firstNameRef.current;
+        const lastName: HTMLInputElement | null = lastNameRef.current;
+        const email: HTMLInputElement | null = emailRef.current;
+        const phone: HTMLInputElement | null = phoneRef.current;
+        const subject: HTMLInputElement | null = subjectRef.current;
+        const message: HTMLTextAreaElement | null = messageRef.current;
 
 
         const body = {
-            "firstname": firstName,
-            "lastname": lastName,
-            "email": email,
-            "phone": phone,
-            "subject": subject,
-            "message": message,
+            "firstname": firstName?.value,
+            "lastname": lastName?.value,
+            "email": email?.value,
+            "phone": phone?.value,
+            "subject": subject?.value,
+            "message": message?.value,
             "g-recaptcha-response": captchaCode
         }
+
+        console.log(body);
 
         Api.post('/api/contactmail', body)
             .then((response) => {
@@ -232,6 +240,7 @@ const ContactForm = () => {
                                     </label>
                                     <div className="mt-1">
                                         <input
+                                            ref={firstNameRef}
                                             type="text"
                                             name="first-name"
                                             id="first-name"
@@ -247,6 +256,7 @@ const ContactForm = () => {
                                     </label>
                                     <div className="mt-1">
                                         <input
+                                            ref={lastNameRef}
                                             type="text"
                                             name="last-name"
                                             id="last-name"
@@ -262,6 +272,7 @@ const ContactForm = () => {
                                     </label>
                                     <div className="mt-1">
                                         <input
+                                            ref={emailRef}
                                             id="email"
                                             name="email"
                                             type="email"
@@ -279,6 +290,7 @@ const ContactForm = () => {
                                     </div>
                                     <div className="mt-1">
                                         <input
+                                            ref={phoneRef}
                                             type="text"
                                             name="phone"
                                             id="phone"
@@ -294,6 +306,7 @@ const ContactForm = () => {
                                     </label>
                                     <div className="mt-1">
                                         <input
+                                            ref={subjectRef}
                                             type="text"
                                             name="subject"
                                             id="subject"
@@ -313,6 +326,7 @@ const ContactForm = () => {
                                     </div>
                                     <div className="mt-1">
                                         <textarea
+                                            ref={messageRef}
                                             id="message"
                                             name="message"
                                             rows={4}
