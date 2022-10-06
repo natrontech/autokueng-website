@@ -3,9 +3,7 @@ package backend
 import (
 	"crypto/tls"
 	"fmt"
-	"log"
 	"net"
-	"net/http"
 	"net/mail"
 	"net/smtp"
 
@@ -35,13 +33,9 @@ func SendContactFormMail(c echo.Context) error {
 		return err
 	}
 
-	log.Println(reqBody)
-
 	// check recaptcha
 	if err := util.CheckRecaptcha(reqBody.RecaptchaResponse); err != nil {
-		return c.JSON(http.StatusBadRequest, map[string]string{
-			"error": "recaptcha failed",
-		})
+		return err
 	}
 
 	// send mail

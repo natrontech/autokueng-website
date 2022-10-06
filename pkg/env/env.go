@@ -23,6 +23,8 @@ var (
 	SMTP_TO string
 	// SMTP_SSL is the SSL flag for the SMTP server
 	SMTP_SSL bool
+	// CAPTCHA_SECRET is the secret for the captcha
+	CAPTCHA_SECRET string
 )
 
 // Init initializes the environment variables
@@ -61,6 +63,10 @@ func Init() error {
 
 	if SMTP_SSL = os.Getenv("SMTP_SSL") == "true"; !SMTP_SSL {
 		SMTP_SSL = false
+	}
+
+	if CAPTCHA_SECRET = os.Getenv("CAPTCHA_SECRET"); CAPTCHA_SECRET == "" {
+		CAPTCHA_SECRET = "CAPTCHA_SECRET"
 	}
 
 	return nil

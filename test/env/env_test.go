@@ -25,6 +25,7 @@ func TestInit(t *testing.T) {
 				"SMTP_FROM":                 "SMTP_FROM",
 				"SMTP_TO":                   "SMTP_TO",
 				"SMTP_SSL":                  "true",
+				"CAPTCHA_SECRET":            "CAPTCHA_SECRET",
 			},
 		},
 		{
@@ -38,6 +39,7 @@ func TestInit(t *testing.T) {
 				"SMTP_PORT":                 "",
 				"SMTP_FROM":                 "",
 				"SMTP_TO":                   "",
+				"SMTP_SSL":                  "",
 			},
 		},
 	}

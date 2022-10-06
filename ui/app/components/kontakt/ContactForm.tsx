@@ -24,7 +24,6 @@ const ContactForm = () => {
     async function handleSubmit(event: any) {
         event.preventDefault();
 
-        // TODO: fix this mess
         const firstName: HTMLInputElement | null = firstNameRef.current;
         const lastName: HTMLInputElement | null = lastNameRef.current;
         const email: HTMLInputElement | null = emailRef.current;

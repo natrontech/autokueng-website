@@ -5,17 +5,16 @@ import (
 	"fmt"
 	"net/http"
 	"strings"
-)
 
-var (
-	CaptchaSecret string
+	"github.com/natrongmbh/autokueng-website/pkg/env"
 )
 
 const siteVerifyURL = "https://www.google.com/recaptcha/api/siteverify"
 
-func CheckRecaptcha(response string) error {
+// TODO: fix this broken function
+func CheckRecaptcha(recaptchaResponse string) error {
 	req, err := http.NewRequest("POST", siteVerifyURL,
-		strings.NewReader(fmt.Sprintf("secret=%s&response=%s", CaptchaSecret, response)))
+		strings.NewReader(fmt.Sprintf("secret=%s&response=%s", env.CAPTCHA_SECRET, recaptchaResponse)))
 	if err != nil {
 		return err
 	}
