@@ -2,6 +2,7 @@ import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import Api from "../../config/Api";
+import { Toast, ToastType } from "../alerts/Toast";
 import Heading from "../general/typo/Heading";
 
 const ContactForm = () => {
@@ -17,7 +18,6 @@ const ContactForm = () => {
         if (!captchaCode) {
             return;
         }
-
         setCaptchaCode(captchaCode);
     }
 
@@ -46,8 +46,9 @@ const ContactForm = () => {
 
         Api.post('/api/contactmail', body)
             .then((response) => {
-                console.log(response);
+                Toast('Nachricht erfolgreich versendet!', ToastType.success);
             }).catch((error) => {
+                Toast('Nachricht konnte nicht versendet werden!', ToastType.error);
                 console.log(error);
             });
     }
@@ -339,7 +340,7 @@ const ContactForm = () => {
                                 <div className="sm:col-span-2">
                                     <div className="mt-8">
                                         <ReCAPTCHA
-                                            sitekey="6LeZEmUUAAAAAOajaQlIovsPppATe8si4lr_u3nm"
+                                            sitekey="6LcuuWUiAAAAANFHccE5ik2Hph01SOAmQEjq6n2F"
                                             size="normal"
                                             onChange={onReCAPTCHAChange as any}
                                         />
