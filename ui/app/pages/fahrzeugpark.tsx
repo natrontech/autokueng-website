@@ -1,4 +1,4 @@
-import { ArrowDownOnSquareIcon, TableCellsIcon } from "@heroicons/react/24/outline";
+import { ArrowDownOnSquareIcon, PlusIcon, TableCellsIcon } from "@heroicons/react/24/outline";
 import { NextPage } from "next"
 import { ClientResponseError } from "pocketbase";
 import { useEffect, useState } from "react";
@@ -33,14 +33,14 @@ const Fahrzeugpark: NextPage = () => {
             {
                 user && !loading && (
                     <div
-                        className="grid grid-cols-1 justify-center items-center max-w-xl mx-auto"
+                        className="grid grid-cols-1 gap-2 justify-center items-center max-w-xl mx-auto"
                     >
                         <div className="mx-auto">
                             <StyledButton
-                                name="Fahrzeug Excel abgleichen"
+                                name="Fahrzeug erfassen"
                                 onClick={() => { }}
                                 type={StyledButtonType.Primary}
-                                icon={TableCellsIcon}
+                                icon={PlusIcon}
                                 className="px-4"
                                 small
                             />
@@ -59,7 +59,7 @@ const Fahrzeugpark: NextPage = () => {
                 )
             }
             <div
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-2 sm:px-20 mt-10"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-2 sm:px-20 my-10"
             >
                 {vehicles?.map((vehicle) => (
                     <FahrzeugCard key={vehicle.id} vehicle={vehicle} />

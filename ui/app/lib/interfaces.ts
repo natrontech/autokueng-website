@@ -29,7 +29,7 @@ interface VehicleInterface extends Record {
     description: string;
     km: number;
     price: number;
-    image: string;
+    images: string[];
     ps: number;
     fuel: FuelType;
     gearbox: GearboxType;
