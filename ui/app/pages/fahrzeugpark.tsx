@@ -1,4 +1,4 @@
-import { TableCellsIcon } from "@heroicons/react/24/outline";
+import { ArrowDownOnSquareIcon, TableCellsIcon } from "@heroicons/react/24/outline";
 import { NextPage } from "next"
 import { ClientResponseError } from "pocketbase";
 import { useEffect, useState } from "react";
@@ -32,14 +32,29 @@ const Fahrzeugpark: NextPage = () => {
             <Heading title="FAHRZEUGPARK" subtitle="Unser Fahrzeugpark" />
             {
                 user && !loading && (
-                    <div className="w-56 mx-auto">
-                        <StyledButton
-                            name="Fahrzeug Excel abgleichen"
-                            onClick={() => {}}
-                            type={StyledButtonType.Primary}
-                            icon={TableCellsIcon}
-                            small
-                        />
+                    <div
+                        className="grid grid-cols-1 justify-center items-center max-w-xl mx-auto"
+                    >
+                        <div className="mx-auto">
+                            <StyledButton
+                                name="Fahrzeug Excel abgleichen"
+                                onClick={() => { }}
+                                type={StyledButtonType.Primary}
+                                icon={TableCellsIcon}
+                                className="px-4"
+                                small
+                            />
+                        </div>
+                        <div className="mx-auto">
+                            <StyledButton
+                                name="Aktuelle Fahrzeugliste herunterladen"
+                                onClick={() => { }}
+                                type={StyledButtonType.Secondary}
+                                icon={ArrowDownOnSquareIcon}
+                                className="px-4"
+                                small
+                            />
+                        </div>
                     </div>
                 )
             }
