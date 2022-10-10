@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
+import Router, { useRouter } from "next/router";
 import Swal from "sweetalert2";
 import PocketBase, { User } from 'pocketbase';
 import Cookies from 'js-cookie';
@@ -26,6 +26,7 @@ export const UserContextProvider = ({ children }: Props) => {
     const [error, setError] = useState(null);
     const [reload, setReload] = useState(false);
     const client = new PocketBase(config.ENV_API_URL || "http://127.0.0.1:8090");
+    const router = useRouter();
 
     useEffect(() => {
         async function checkAuth() {
@@ -38,15 +39,15 @@ export const UserContextProvider = ({ children }: Props) => {
                 })
         }
         setLoading(false);
-        // checkAuth()
-        //     .catch((error) => {
-        //         logout(true)
-        //         console.log(error);
-        //     })
-        //     .finally(() => {
-        //         setLoading(false);
-        //         setReload(!reload);
-        //     })
+        checkAuth()
+            .catch((error) => {
+                logout(true)
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+                setReload(!reload);
+            })
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -59,6 +60,7 @@ export const UserContextProvider = ({ children }: Props) => {
                     setUser(data.user);
                     Toast("Logged In", ToastType.success);
                 }
+                router.push("/");
             })
             .catch((error) => {
                 console.log(error);

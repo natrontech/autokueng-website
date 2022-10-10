@@ -5,10 +5,15 @@ import { useUserContext } from '../contexts/userContext'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Bars3Icon, BuildingStorefrontIcon, ChatBubbleBottomCenterIcon, HomeIcon, IdentificationIcon, PaperClipIcon, UserIcon, WrenchScrewdriverIcon, XMarkIcon } from '@heroicons/react/20/solid'
+import { User } from 'pocketbase'
+import { parseUserAvatarUrl } from '../lib/parser'
 
 export default function Navbar() {
 
-    const { user, loading }: any = useUserContext();
+    const { user, loading, logout }: any = useUserContext();
+
+    // parse user to user object from pocketbase
+    const userObj: User = user;
 
     const router = useRouter();
 
@@ -22,8 +27,8 @@ export default function Navbar() {
     ]
 
     const userNavigation = [
-        { name: 'Settings', href: '/settings' },
-        { name: 'Sign out', href: '/logout' },
+        { name: 'Einstellungen', onClick: () => router.push('/profile') },
+        { name: 'Sign out', onClick: () => logout() },
     ]
 
     return (
@@ -98,7 +103,12 @@ export default function Navbar() {
                                                 <div>
                                                     <Menu.Button className=" flex text-sm rounded-full ">
                                                         <span className="sr-only">Open user menu</span>
-                                                        <UserIcon className="h-6 w-6" aria-hidden="true" />
+                                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                        <img
+                                                            className="h-8 w-8 rounded-full"
+                                                            src={parseUserAvatarUrl(userObj)}
+                                                            alt=""
+                                                        />
                                                     </Menu.Button>
                                                 </div>
                                                 <Transition
@@ -115,7 +125,7 @@ export default function Navbar() {
                                                             <Menu.Item key={item.name}>
                                                                 {({ active }) => (
                                                                     <a
-                                                                        href={item.href}
+                                                                        onClick={item.onClick}
                                                                         className={classNames(
                                                                             active ? 'bg-gray-100' : '',
                                                                             'block px-4 py-2 text-sm text-gray-700'
@@ -159,11 +169,11 @@ export default function Navbar() {
                                     <div className="flex items-center px-5 sm:px-6">
                                         <div className="flex-shrink-0">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img className="h-10 w-10 rounded-full" src={user?.avatar_url} alt="" />
+                                            <img className="h-10 w-10 rounded-full" src={parseUserAvatarUrl(userObj)} alt="" />
                                         </div>
                                         <div className="ml-3">
-                                            <div className="text-base font-medium text-black">{user?.name}</div>
-                                            {/* <div className="text-sm font-medium text-gray-500">{user?.email}</div> */}
+                                            <div className="text-base font-medium text-black">{userObj?.profile?.name}</div>
+                                            <div className="text-sm font-medium text-gray-500">{userObj?.email}</div>
                                         </div>
                                     </div>
                                     <div className="mt-3 px-2 space-y-1 sm:px-3">
@@ -171,7 +181,7 @@ export default function Navbar() {
                                             <Disclosure.Button
                                                 key={item.name}
                                                 as="a"
-                                                href={item.href}
+                                                onClick={item.onClick}
                                                 className="block px-3 py-2 rounded-md text-base font-medium text-black shadow-sm border-black border-2"
                                             >
                                                 {item.name}
