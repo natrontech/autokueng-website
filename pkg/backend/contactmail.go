@@ -110,7 +110,13 @@ func SendContactFormMail(c echo.Context) error {
 	} else {
 		// Connect to the server, authenticate, set the sender and recipient,
 		// and send the email all in one step.
-		if err := smtp.SendMail(servername, auth, from.Address, []string{to.Address}, []byte(message)); err != nil {
+
+		// sanitize the message body for SMTP; replace \r\n with \n and
+		// ensure lines are no longer than 998 characters (SMTP max line length is 1000)
+		message = util.SanitizeSMTPBody(message)
+
+		err := smtp.SendMail(servername, auth, from.Address, []string{to.Address}, []byte(message))
+		if err != nil {
 			return err
 		}
 	}
