@@ -14,12 +14,26 @@ interface MemberInterface extends Record {
     image: string;
 }
 
+enum FuelType {
+    Diesel = "Diesel",
+    Benzin = "Benzin",
+}
+
+enum GearboxType {
+    Automatik = "Automatik",
+    Schaltgetriebe = "Schaltgetriebe",
+}
+
 interface VehicleInterface extends Record {
     name: string;
     description: string;
     km: number;
     price: number;
     image: string;
+    ps: number;
+    fuel: FuelType;
+    gearbox: GearboxType;
+    date: Date;
 }
 
 interface ServiceInterface extends Record {
