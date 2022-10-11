@@ -2,6 +2,7 @@ import { Dialog, Transition } from "@headlessui/react"
 import { ExclamationTriangleIcon, InformationCircleIcon } from "@heroicons/react/24/outline"
 import { forwardRef, Fragment, useEffect, useImperativeHandle, useRef, useState } from "react"
 import { Toast } from "../../alerts/Toast";
+import StyledButton, { StyledButtonType } from "../buttons/StyledButton";
 
 export declare type TypeOptions = 'danger' | 'info';
 
@@ -46,33 +47,31 @@ export const Modal = forwardRef((props: ModalProps, ref) => {
         switch (props.type) {
             case "danger":
                 return (
-                    <button
-                        type="button"
-                        className="inline-flex w-full justify-center rounded-md border border-transparent bg-red-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    <StyledButton
+                        name={props.confirm}
+                        type={StyledButtonType.Danger}
                         onClick={
                             () => {
                                 props.onConfirm()
                                 setOpen(false);
                             }
                         }
-                    >
-                        {props.confirm}
-                    </button>
+                        small
+                    />
                 )
             case "info":
                 return (
-                    <button
-                        type="button"
-                        className="inline-flex w-full justify-center rounded-md border border-transparent bg-blue-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:w-auto sm:text-sm"
+                    <StyledButton
+                        name={props.confirm}
+                        type={StyledButtonType.Primary}
                         onClick={
                             () => {
                                 props.onConfirm()
                                 setOpen(false);
                             }
                         }
-                    >
-                        {props.confirm}
-                    </button>
+                        small
+                    />
                 )
             default:
                 return null
@@ -91,7 +90,7 @@ export const Modal = forwardRef((props: ModalProps, ref) => {
 
     return (
         <Transition.Root show={open} as={Fragment}>
-            <Dialog as="div" className="relative z-10" initialFocus={cancelButtonRef} onClose={setOpen}>
+            <Dialog as="div" className="relative z-30" initialFocus={cancelButtonRef} onClose={setOpen}>
                 <Transition.Child
                     as={Fragment}
                     enter="ease-out duration-300"
@@ -129,16 +128,14 @@ export const Modal = forwardRef((props: ModalProps, ref) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="mt-5 sm:mt-4 sm:ml-10 sm:flex sm:pl-4">
+                                <div className="mt-4 grid grid-cols-2 gap-2">
                                     <ConfirmButton />
-                                    <button
-                                        type="button"
-                                        className="mt-3 inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-base font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                                    <StyledButton
+                                        name={props.cancel}
+                                        type={StyledButtonType.Secondary}
                                         onClick={() => setOpen(false)}
-                                        ref={cancelButtonRef}
-                                    >
-                                        {props.cancel}
-                                    </button>
+                                        small
+                                    />
                                 </div>
                             </Dialog.Panel>
                         </Transition.Child>
