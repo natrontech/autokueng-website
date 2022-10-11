@@ -1,13 +1,16 @@
 import { faCalendar, faGasPump, faGaugeHigh, faGears, faRoad } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { BanknotesIcon, EnvelopeIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { EnvelopeIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { BanknotesIcon } from "@heroicons/react/24/solid";
 import { useUserContext } from "../../contexts/userContext";
 import { ImageInterface, VehicleInterface } from "../../lib/interfaces";
 import { dateParser, formatNumber, parseImageUrl, parseImageUrlSpecific } from "../../lib/parser";
 import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton";
 import ImageGallery from 'react-image-gallery';
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { createVehicleEmail } from "../../lib/email";
+import Modal, { ModalProps } from "../general/modals/Modal";
+import { Toast, ToastType } from "../alerts/Toast";
 
 const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
 
@@ -21,8 +24,18 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
     })
 
     const [images, setImages] = useState<ImageInterface[]>(parsedImages)
-
-    console.log(images)
+    const deleteModalRef = useRef<any>(null)
+    const deleteModalProps: ModalProps = {
+        title: "Fahrzeug löschen",
+        description: "Möchten Sie das Fahrzeug wirklich löschen?",
+        type: "danger",
+        confirm: "Löschen",
+        cancel: "Abbrechen",
+        onConfirm: () => {
+            console.log("delete")
+            Toast("Fahrzeug wurde gelöscht", ToastType.success)
+        },
+    }
 
     const specList = [
         {
@@ -52,9 +65,12 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
         }
     ]
 
-
     return (
-        <div key={vehicle.id} className="shadow-lg rounded-lg">
+        <div key={vehicle.id} className="shadow-lg relative rounded-lg">
+            <Modal
+                ref={deleteModalRef}
+                {...deleteModalProps}
+            />
             {
                 user && !loading && (
                     <div
@@ -62,7 +78,9 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                     >
                         <StyledButton
                             name="Bearbeiten"
-                            onClick={() => { }}
+                            onClick={() => {
+
+                            }}
                             type={StyledButtonType.Primary}
                             icon={PencilIcon}
                             className="px-4"
@@ -70,7 +88,11 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                         />
                         <StyledButton
                             name="Löschen"
-                            onClick={() => { }}
+                            onClick={() => {
+                                if (deleteModalRef.current) {
+                                    deleteModalRef.current.open()
+                                }
+                            }}
                             type={StyledButtonType.Danger}
                             icon={TrashIcon}
                             className="px-4"
@@ -80,8 +102,7 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                 )
             }
             <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-lg">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                {vehicle?.images && <ImageGallery items={images} showPlayButton={false} showThumbnails={false} showFullscreenButton={false} />}
+                {vehicle?.images && <ImageGallery items={images} showPlayButton={false} showThumbnails={false} />}
             </div>
             <div className="mt-4 p-4">
                 <div>
@@ -112,7 +133,7 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                 <div
                     className="text-md font-bold text-primary mt-4"
                 >
-                    <BanknotesIcon className="h-6 w-6 inline" /> {' '}
+                    <BanknotesIcon className="h-4 w-4 inline" /> {' '}
                     <span>{formatNumber(vehicle?.price)} CHF</span>
 
                 </div>
