@@ -40,7 +40,7 @@ export default function Navbar() {
                             <div className="flex">
                                 <div className="-ml-2 mr-2 flex items-center md:hidden">
                                     {/* Mobile menu button */}
-                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white bg-primary right-4 absolute">
                                         <span className="sr-only">Open main menu</span>
                                         {open ? (
                                             <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -50,21 +50,14 @@ export default function Navbar() {
                                     </Disclosure.Button>
                                 </div>
                                 <div className="flex-shrink-0 flex items-center">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        className="w-24 h-24 left-5 absolute sm:hidden block"
+                                        src="/images/logo/logo_text_colored_primary.svg"
+                                        alt=""
+                                    />
                                     <div
-                                        className="block lg:hidden h-10 w-20 top-2 relative m-auto mb-5"
-                                    >
-                                        <Image
-                                            className=""
-                                            src="/images/logo/logo_text_colored_primary.svg"
-                                            alt="Workflow"
-                                            objectFit="contain"
-                                            layout="fill"
-                                            priority={true}
-                                            loader={({ src }) => src as string}
-                                        />
-                                    </div>
-                                    <div
-                                        className="hidden lg:block h-10 w-28 top-2 relative m-auto mb-5"
+                                        className="hidden sm:block h-10 w-28 top-2 relative m-auto mb-5"
                                     >
                                         <Image
                                             className=""
@@ -154,8 +147,8 @@ export default function Navbar() {
                                     as="a"
                                     href={item.href}
                                     className={classNames(
-                                        item.current ? 'bg-black text-white' : 'text-black hover:bg-gray-700 hover:text-white',
-                                        'block px-3 py-2 rounded-md text-base font-medium shadow-sm border-black border-2'
+                                        item.current ? 'bg-primary text-white' : 'text-primary hover:active:bg-primary hover:active:text-white',
+                                        'block px-3 py-2 rounded-md text-base font-medium shadow-sm border-primary border-2 transition-all duration-150 ease-in-out'
                                     )}
                                     aria-current={item.current ? 'page' : undefined}
                                 >
@@ -163,9 +156,10 @@ export default function Navbar() {
                                 </Disclosure.Button>
                             ))}
                         </div>
+                        <hr className="" />
                         {
                             user && !loading && (
-                                <div className="pt-4 pb-3 border-t border-gray-700">
+                                <div className="pt-4 pb-3 ">
                                     <div className="flex items-center px-5 sm:px-6">
                                         <div className="flex-shrink-0">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -182,7 +176,7 @@ export default function Navbar() {
                                                 key={item.name}
                                                 as="a"
                                                 onClick={item.onClick}
-                                                className="block px-3 py-2 rounded-md text-base font-medium text-black shadow-sm border-black border-2"
+                                                className="block px-3 py-2 rounded-md text-base font-medium text-primary shadow-sm border-primary border-2"
                                             >
                                                 {item.name}
                                             </Disclosure.Button>

@@ -1,9 +1,11 @@
 import { ArrowDownOnSquareIcon, PlusIcon, TableCellsIcon } from "@heroicons/react/24/outline";
 import { NextPage } from "next"
 import { ClientResponseError } from "pocketbase";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FahrzeugCard from "../components/fahrzeugpark/FahrzeugCard";
+import FahrzeugCreateForm from "../components/fahrzeugpark/FahrzeugCreateForm";
 import StyledButton, { StyledButtonType } from "../components/general/buttons/StyledButton";
+import ModalSkeleton from "../components/general/modals/ModalSkeleton";
 import Heading from "../components/general/typo/Heading";
 import { useUserContext } from "../contexts/userContext";
 import { VehicleInterface } from "../lib/interfaces";
@@ -13,6 +15,7 @@ const Fahrzeugpark: NextPage = () => {
     const { user, client, loading }: any = useUserContext();
 
     const [vehicles, setVehicles] = useState<VehicleInterface[]>([])
+    const createModalRef = useRef<any>(null)
 
     useEffect(() => {
         (
@@ -30,6 +33,9 @@ const Fahrzeugpark: NextPage = () => {
     return (
         <div>
             <Heading title="FAHRZEUGPARK" subtitle="Unser Fahrzeugpark" />
+            <ModalSkeleton ref={createModalRef}>
+                <FahrzeugCreateForm />
+            </ModalSkeleton>
             {
                 user && !loading && (
                     <div
@@ -38,7 +44,11 @@ const Fahrzeugpark: NextPage = () => {
                         <div className="mx-auto">
                             <StyledButton
                                 name="Fahrzeug erfassen"
-                                onClick={() => { }}
+                                onClick={() => {
+                                    if (createModalRef.current) {
+                                        createModalRef.current.open()
+                                    }
+                                }}
                                 type={StyledButtonType.Primary}
                                 icon={PlusIcon}
                                 className="px-4"

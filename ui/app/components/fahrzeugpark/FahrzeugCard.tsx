@@ -145,7 +145,7 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                         onClick={() => createVehicleEmail(vehicle)}
                         type={StyledButtonType.Primary}
                         icon={EnvelopeIcon}
-                        className="px-4"
+                        className="w-full"
                         small
                         iconAnimation
                     />

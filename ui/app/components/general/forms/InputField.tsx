@@ -11,6 +11,7 @@ export interface InputFieldProps {
     type: string;
     value?: string;
     disabled?: boolean;
+    multiple?: boolean;
 }
 
 const InputField = (props: InputFieldProps) => {
@@ -29,7 +30,7 @@ const InputField = (props: InputFieldProps) => {
                         props.label
                 }
             </label>
-            <input autoComplete="off" className="w-full bg-transparent border-none focus:ring-0" disabled={props.disabled} value={props.value} placeholder={props.placeholder} id={props.name} name={props.name} type={props.type} onChange={props.onChange} required={props.required} />
+            <input autoComplete="off" className="w-full bg-transparent border-none focus:ring-0" disabled={props.disabled} value={props.value} placeholder={props.placeholder} id={props.name} name={props.name} type={props.type} onChange={props.onChange} required={props.required} multiple={props.multiple} />
         </div>
     )
 }
