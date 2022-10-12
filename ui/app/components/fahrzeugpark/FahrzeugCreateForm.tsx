@@ -5,16 +5,17 @@ import { Toast, ToastType } from "../alerts/Toast";
 import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton"
 import InputField from "../general/forms/InputField"
 
-const FahrzeugCreateForm = () => {
+interface Props {
+    modalRef: any
+}
 
-    const { client }: any = useUserContext()
+const FahrzeugCreateForm = (props: Props) => {
+
+    const { client, setReload, reload }: any = useUserContext()
 
     const [images, setImages] = useState<File[]>([])
 
     const handleSave = async () => {
-        // get values from form
-        // create vehicle
-        // close modal
 
         const formData = new FormData();
         const name = document.getElementById('name') as HTMLInputElement;
@@ -45,13 +46,15 @@ const FahrzeugCreateForm = () => {
             .then((record: ClientResponseError) => {
                 console.log(record);
                 Toast("Fahrzeug erfolgreich erstellt!", ToastType.success);
+                props.modalRef.current.close()
             })
             .catch((error: ClientResponseError) => {
                 console.log(error);
                 Toast("Fahrzeug konnte nicht erstellt werden!", ToastType.error);
             })
-
-
+            .finally(() => {
+                setReload(!reload)
+            })
     }
 
     return (

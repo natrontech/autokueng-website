@@ -9,7 +9,7 @@ export interface InputFieldProps {
     onChange?: any;
     required: boolean;
     type: string;
-    value?: string;
+    value?: any;
     disabled?: boolean;
     multiple?: boolean;
 }

@@ -42,3 +42,16 @@ input:checked~.dot {
 input:checked~ {
     background-color: green;
 }
+
+.fahrzeug-image-gallery .image-gallery-swipe .image-gallery-slides,
+.fahrzeug-image-gallery .image-gallery-content .image-gallery-slide-wrapper .image-gallery-slides
+{
+    height: 200px;
+}
+
+.image-gallery-slide,
+.image-gallery-image {
+    max-height: unset;
+    height: 100%;
+    object-fit: accordingly;
+}

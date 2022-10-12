@@ -11,19 +11,22 @@ import { useRef, useState } from "react";
 import { createVehicleEmail } from "../../lib/email";
 import Modal, { ModalProps } from "../general/modals/Modal";
 import { Toast, ToastType } from "../alerts/Toast";
+import { ClientResponseError } from "pocketbase";
+import ModalSkeleton from "../general/modals/ModalSkeleton";
+import FahrzeugForm from "./FahrzeugForm";
 
 const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
 
-    const { user, loading }: any = useUserContext();
+    const { user, loading, client, setReload, reload }: any = useUserContext();
 
     const parsedImages: any = vehicle?.images?.map((vehicleImage: string) => {
         return {
             original: parseImageUrlSpecific(vehicle, vehicleImage),
-            thumbnail: parseImageUrlSpecific(vehicle, vehicleImage),
         }
     })
 
     const [images, setImages] = useState<ImageInterface[]>(parsedImages)
+    const updateModalRef = useRef<any>(null);
     const deleteModalRef = useRef<any>(null)
     const deleteModalProps: ModalProps = {
         title: "Fahrzeug löschen",
@@ -31,9 +34,20 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
         type: "danger",
         confirm: "Löschen",
         cancel: "Abbrechen",
-        onConfirm: () => {
-            console.log("delete")
-            Toast("Fahrzeug wurde gelöscht", ToastType.success)
+        onConfirm: async () => {
+            await client.records.delete('vehicles', vehicle.id)
+                .then(() => {
+                    Toast("Fahrzeug wurde gelöscht", ToastType.success)
+                })
+                .catch((error: ClientResponseError) => {
+                    Toast(error.message, ToastType.error)
+                })
+                .finally(() => {
+                    if (deleteModalRef.current) {
+                        deleteModalRef.current.close()
+                    }
+                })
+                setReload(!reload)
         },
     }
 
@@ -66,11 +80,15 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
     ]
 
     return (
-        <div key={vehicle.id} className="shadow-lg relative rounded-lg">
+        <div key={vehicle.id} className="shadow-lg flex-1 border-2 border-black bg-white relative rounded-lg">
             <Modal
                 ref={deleteModalRef}
                 {...deleteModalProps}
             />
+            <ModalSkeleton ref={updateModalRef}>
+                <FahrzeugForm modalRef={updateModalRef} type="edit" vehicle={vehicle} />
+            </ModalSkeleton>
+
             {
                 user && !loading && (
                     <div
@@ -79,7 +97,9 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                         <StyledButton
                             name="Bearbeiten"
                             onClick={() => {
-
+                                if (updateModalRef.current) {
+                                    updateModalRef.current.open()
+                                }
                             }}
                             type={StyledButtonType.Primary}
                             icon={PencilIcon}
@@ -101,8 +121,8 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                     </div>
                 )
             }
-            <div className="min-h-80 aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-t-lg">
-                {vehicle?.images && <ImageGallery items={images} showPlayButton={false} showThumbnails={false} />}
+            <div className="w-full overflow-hidden mt-5">
+                {vehicle?.images && <ImageGallery items={images} showPlayButton={false} showThumbnails={false} showFullscreenButton={false} additionalClass="fahrzeug-image-gallery" />}
             </div>
             <div className="mt-4 p-4">
                 <div>
@@ -111,7 +131,7 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                             {vehicle?.name}
                         </div>
                     </h3>
-                    <p className="mt-1 text-sm text-gray-500">{vehicle?.description}</p>
+                    <p className="mt-1 text-sm text-gray-700 h-20 overflow-y-scroll">{vehicle?.description}</p>
                     <hr className="my-2 text-gray-500" />
                     {
                         specList.map((spec, index) => (
@@ -131,9 +151,8 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                     }
                 </div>
                 <div
-                    className="text-md font-bold text-primary mt-4"
+                    className="text-md font-bold text-primary mt-4 bg-gray-100 p-2 text-right"
                 >
-                    <BanknotesIcon className="h-4 w-4 inline" /> {' '}
                     <span>{formatNumber(vehicle?.price)} CHF</span>
 
                 </div>

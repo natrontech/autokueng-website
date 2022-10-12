@@ -4,6 +4,7 @@ import { ClientResponseError } from "pocketbase";
 import { useEffect, useRef, useState } from "react";
 import FahrzeugCard from "../components/fahrzeugpark/FahrzeugCard";
 import FahrzeugCreateForm from "../components/fahrzeugpark/FahrzeugCreateForm";
+import FahrzeugForm from "../components/fahrzeugpark/FahrzeugForm";
 import StyledButton, { StyledButtonType } from "../components/general/buttons/StyledButton";
 import ModalSkeleton from "../components/general/modals/ModalSkeleton";
 import Heading from "../components/general/typo/Heading";
@@ -12,7 +13,7 @@ import { VehicleInterface } from "../lib/interfaces";
 
 const Fahrzeugpark: NextPage = () => {
 
-    const { user, client, loading }: any = useUserContext();
+    const { user, client, loading, reload }: any = useUserContext();
 
     const [vehicles, setVehicles] = useState<VehicleInterface[]>([])
     const createModalRef = useRef<any>(null)
@@ -28,13 +29,13 @@ const Fahrzeugpark: NextPage = () => {
                 setVehicles(records)
             }
         )()
-    }, [client.records])
+    }, [client.records, reload])
 
     return (
         <div>
             <Heading title="FAHRZEUGPARK" subtitle="Unser Fahrzeugpark" />
             <ModalSkeleton ref={createModalRef}>
-                <FahrzeugCreateForm />
+                <FahrzeugForm modalRef={createModalRef} type="create" />
             </ModalSkeleton>
             {
                 user && !loading && (

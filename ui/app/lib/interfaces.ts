@@ -44,7 +44,7 @@ interface ServiceInterface extends Record {
 
 interface ImageInterface extends Record {
     original: string;
-    thumbnail: string;
+    thumbnail?: string;
 }
 
 interface LinkInterface extends Record {
