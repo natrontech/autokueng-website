@@ -427,26 +427,6 @@
                 }
             },
             {
-                "id": "huancsoa",
-                "name": "image",
-                "type": "file",
-                "system": false,
-                "required": true,
-                "unique": false,
-                "options": {
-                    "maxSelect": 1,
-                    "maxSize": 5242880,
-                    "mimeTypes": [
-                        "image/jpg",
-                        "image/jpeg",
-                        "image/png",
-                        "image/svg+xml",
-                        "image/gif"
-                    ],
-                    "thumbs": []
-                }
-            },
-            {
                 "id": "j0vmhdhb",
                 "name": "description",
                 "type": "text",
@@ -507,6 +487,26 @@
                 "options": {
                     "min": "",
                     "max": ""
+                }
+            },
+            {
+                "id": "3b4cri5r",
+                "name": "images",
+                "type": "file",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "maxSelect": 5,
+                    "maxSize": 5242880,
+                    "mimeTypes": [
+                        "image/jpg",
+                        "image/jpeg",
+                        "image/png",
+                        "image/svg+xml",
+                        "image/gif"
+                    ],
+                    "thumbs": []
                 }
             }
         ]

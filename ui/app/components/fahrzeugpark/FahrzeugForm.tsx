@@ -2,6 +2,7 @@ import { ClientResponseError } from "pocketbase";
 import { useState } from "react";
 import { useUserContext } from "../../contexts/userContext";
 import { VehicleInterface } from "../../lib/interfaces";
+import { parseImageUrlSpecific } from "../../lib/parser";
 import { Toast, ToastType } from "../alerts/Toast";
 import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton"
 import InputField from "../general/forms/InputField"
@@ -47,101 +48,114 @@ const FahrzeugForm = (props: Props) => {
 
 
         if (props.type === "create") {
-        await client.records.create('vehicles', formData)
-            .then((record: ClientResponseError) => {
-                console.log(record);
-                Toast("Fahrzeug erfolgreich erstellt!", ToastType.success);
-                props.modalRef.current.close()
-            })
-            .catch((error: ClientResponseError) => {
-                console.log(error);
-                Toast("Fahrzeug konnte nicht erstellt werden!", ToastType.error);
-            })
-            .finally(() => {
-                setReload(!reload)
-            })
+            await client.records.create('vehicles', formData)
+                .then((record: ClientResponseError) => {
+                    console.log(record);
+                    Toast("Fahrzeug erfolgreich erstellt!", ToastType.success);
+                    props.modalRef.current.close()
+                })
+                .catch((error: ClientResponseError) => {
+                    console.log(error);
+                    Toast("Fahrzeug konnte nicht erstellt werden!", ToastType.error);
+                })
+                .finally(() => {
+                    setReload(!reload)
+                })
         } else {
-            await client.records.update('vehicles', formData)
-            .then((record: ClientResponseError) => {
-                console.log(record);
-                Toast("Fahrzeug erfolgreich erstellt!", ToastType.success);
-                props.modalRef.current.close()
-            })
-            .catch((error: ClientResponseError) => {
-                console.log(error);
-                Toast("Fahrzeug konnte nicht erstellt werden!", ToastType.error);
-            })
-            .finally(() => {
-                setReload(!reload)
-            })
+            await client.records.update('vehicles', props.vehicle?.id , formData)
+                .then((record: ClientResponseError) => {
+                    console.log(record);
+                    Toast("Fahrzeug erfolgreich bearbeitet", ToastType.success);
+                    props.modalRef.current.close()
+                })
+                .catch((error: ClientResponseError) => {
+                    console.log(error);
+                    Toast("Fahrzeug konnte nicht bearbeitet werden!", ToastType.error);
+                })
+                .finally(() => {
+                    setReload(!reload)
+                })
         }
+    }
+
+    const parseDateDay = (date: any) => {
+        const dateArray = date?.split(' ');
+        return dateArray[0];
     }
 
     return (
         <div>
-            <h1 className="text-2xl font-bold text-primary mb-2">Fahrzeug erfassen</h1>
+            {props.type == "create" ?
+                <h1 className="text-2xl font-bold text-primary mb-2">Fahrzeug erfassen</h1> :
+                <h1 className="text-2xl font-bold text-primary mb-2">Fahrzeug bearbeiten</h1>
+            }
             <InputField
                 label="Name"
                 name="name"
                 type="text"
-                value={props.vehicle?.name}
+                defaultValue={props.vehicle?.name}
                 required
             />
             <InputField
                 label="Kurze Beschreibung"
                 name="description"
                 type="text"
-                value={props.vehicle?.description}
+                defaultValue={props.vehicle?.description}
                 required
             />
             <InputField
                 label="Kilometerstand (km)"
                 name="km"
                 type="number"
-                value={props.vehicle?.km}
+                defaultValue={props.vehicle?.km}
                 required
             />
             <InputField
                 label="PS"
                 name="ps"
                 type="number"
-                value={props.vehicle?.ps}
+                defaultValue={props.vehicle?.ps}
                 required
             />
             <InputField
                 label="Kraftstoff (Benzin, Diesel, Elektro, Hybrid)"
                 name="fuel"
                 type="text"
-                value={props.vehicle?.fuel}
+                defaultValue={props.vehicle?.fuel}
                 required
             />
             <InputField
                 label="Getriebe (Automatik, Schaltgetriebe)"
                 name="gearbox"
                 type="text"
-                value={props.vehicle?.gearbox}
+                defaultValue={props.vehicle?.gearbox}
                 required
             />
             <InputField
                 label="Erstzulassung"
                 name="date"
                 type="date"
-                value={props.vehicle?.date}
+                defaultValue={
+                    props.vehicle?.date &&
+                    parseDateDay(props.vehicle?.date)}
                 required
             />
             <InputField
                 label="Preis (CHF)"
                 name="price"
                 type="number"
-                value={props.vehicle?.price}
+                defaultValue={props.vehicle?.price}
                 required
             />
+            { props.type === "edit" &&
+                // information about the images
+                <p className="text-sm text-gray-500 mt-2">Bilder können nicht bearbeitet, sondern nur ergänzt werden.</p>
+            }
             <InputField
                 label="Bilder"
                 name="images"
                 type="file"
                 onChange={(e: any) => setImages(e.target.files)}
-                value={props.vehicle?.images}
                 multiple
                 required
             />
@@ -155,7 +169,9 @@ const FahrzeugForm = (props: Props) => {
                 <StyledButton
                     name="Abbrechen"
                     type={StyledButtonType.Secondary}
-                    onClick={() => { }}
+                    onClick={() => {
+                        props.modalRef.current.close()
+                    }}
                     small
                 />
             </div>

@@ -9,7 +9,7 @@ export const parseImageUrl = (record: Record) => {
     return Api.getUri() + "/api/files/" + record?.["@collectionId"] + "/" + record?.id + "/" + record?.image;
 }
 
-export const parseImageUrlSpecific = (record: Record, image: string) => {
+export const parseImageUrlSpecific = (record: Record | undefined, image: string) => {
     return Api.getUri() + "/api/files/" + record?.["@collectionId"] + "/" + record?.id + "/" + image;
 }
 
