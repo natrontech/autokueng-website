@@ -7,7 +7,7 @@ import Navigation from "./Navigation";
 
 export default function Layout(props: any) {
 
-    const { user, loading }: any = useUserContext();
+    const { loading }: any = useUserContext();
 
     return (
         <div className="flex flex-col h-screen">

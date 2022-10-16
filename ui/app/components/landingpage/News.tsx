@@ -48,7 +48,7 @@ const News = (props: Props) => {
                                         <>
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
                                             <img
-                                                className="h-48 w-full object-cover"
+                                                className="h-64 w-full object-cover"
                                                 src={parseImageUrl(newsItem)}
                                                 alt=""
                                             />

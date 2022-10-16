@@ -1,4 +1,4 @@
-package server
+package backend
 
 import (
 	"github.com/natrongmbh/autokueng-website/pkg/env"

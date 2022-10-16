@@ -10,8 +10,17 @@ interface NewsInterface extends Record {
 interface MemberInterface extends Record {
     name: string;
     role: string;
-    quote: string;
     image: string;
+}
+
+enum FuelType {
+    Diesel = "Diesel",
+    Benzin = "Benzin",
+}
+
+enum GearboxType {
+    Automatik = "Automatik",
+    Schaltgetriebe = "Schaltgetriebe",
 }
 
 interface VehicleInterface extends Record {
@@ -19,7 +28,11 @@ interface VehicleInterface extends Record {
     description: string;
     km: number;
     price: number;
-    image: string;
+    images: string[];
+    ps: number;
+    fuel: FuelType;
+    gearbox: GearboxType;
+    date: Date;
 }
 
 interface ServiceInterface extends Record {
@@ -30,7 +43,7 @@ interface ServiceInterface extends Record {
 
 interface ImageInterface extends Record {
     original: string;
-    thumbnail: string;
+    thumbnail?: string;
 }
 
 interface LinkInterface extends Record {

@@ -27,10 +27,10 @@ const StyledButton = (props: StyledButtonProps) => {
     )
     const defaultStyleClasses = classNames(
         props.type === StyledButtonType.Primary ? "bg-black text-white" : "",
-        props.type === StyledButtonType.Secondary ? "border-2 border-black text-gray-700" : "",
+        props.type === StyledButtonType.Secondary ? "border-2 bg-white border-black text-gray-700" : "",
         props.type === StyledButtonType.Danger ? "bg-red-600 text-white" : "",
         props.small ? "h-9 text-xs py-2" : "h-14 py-4 text-sm px-11",
-        "rounded-sm  w-full overflow-hidden group font-medium my-2",
+        "rounded-sm px-4 overflow-hidden group font-medium",
     )
 
     return (

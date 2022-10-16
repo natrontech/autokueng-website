@@ -30,7 +30,7 @@ const Firma: NextPage = () => {
                     return {
                         ...record,
                         original: parseImageUrlSpecific(record, record.original),
-                        thumbnail: parseImageUrlSpecific(record, record.thumbnail),
+                        thumbnail: parseImageUrlSpecific(record, record.thumbnail || record.original),
                     }
                 })
 

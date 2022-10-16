@@ -222,19 +222,6 @@
                 }
             },
             {
-                "id": "h3uyw4gu",
-                "name": "quote",
-                "type": "text",
-                "system": false,
-                "required": false,
-                "unique": false,
-                "options": {
-                    "min": null,
-                    "max": null,
-                    "pattern": ""
-                }
-            },
-            {
                 "id": "yzsvuj8g",
                 "name": "image",
                 "type": "file",
@@ -284,7 +271,7 @@
                 "name": "description",
                 "type": "text",
                 "system": false,
-                "required": true,
+                "required": false,
                 "unique": false,
                 "options": {
                     "min": null,
@@ -319,7 +306,8 @@
                         "image/jpeg",
                         "image/png",
                         "image/svg+xml",
-                        "image/gif"
+                        "image/gif",
+                        "image/webp"
                     ],
                     "thumbs": []
                 }
@@ -339,26 +327,6 @@
             {
                 "id": "kak05vzg",
                 "name": "original",
-                "type": "file",
-                "system": false,
-                "required": true,
-                "unique": false,
-                "options": {
-                    "maxSelect": 1,
-                    "maxSize": 5242880,
-                    "mimeTypes": [
-                        "image/jpg",
-                        "image/jpeg",
-                        "image/png",
-                        "image/svg+xml",
-                        "image/gif"
-                    ],
-                    "thumbs": []
-                }
-            },
-            {
-                "id": "oxufkexa",
-                "name": "thumbnail",
                 "type": "file",
                 "system": false,
                 "required": true,
@@ -426,26 +394,6 @@
                 }
             },
             {
-                "id": "huancsoa",
-                "name": "image",
-                "type": "file",
-                "system": false,
-                "required": true,
-                "unique": false,
-                "options": {
-                    "maxSelect": 1,
-                    "maxSize": 5242880,
-                    "mimeTypes": [
-                        "image/jpg",
-                        "image/jpeg",
-                        "image/png",
-                        "image/svg+xml",
-                        "image/gif"
-                    ],
-                    "thumbs": []
-                }
-            },
-            {
                 "id": "j0vmhdhb",
                 "name": "description",
                 "type": "text",
@@ -456,6 +404,76 @@
                     "min": null,
                     "max": null,
                     "pattern": ""
+                }
+            },
+            {
+                "id": "xi3vg1ne",
+                "name": "ps",
+                "type": "number",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null
+                }
+            },
+            {
+                "id": "hbrelwsj",
+                "name": "fuel",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "k3eagpfv",
+                "name": "gearbox",
+                "type": "text",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": null,
+                    "max": null,
+                    "pattern": ""
+                }
+            },
+            {
+                "id": "dzlb3vvi",
+                "name": "date",
+                "type": "date",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": "",
+                    "max": ""
+                }
+            },
+            {
+                "id": "3b4cri5r",
+                "name": "images",
+                "type": "file",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "maxSelect": 5,
+                    "maxSize": 5242880,
+                    "mimeTypes": [
+                        "image/jpg",
+                        "image/jpeg",
+                        "image/png",
+                        "image/svg+xml",
+                        "image/gif"
+                    ],
+                    "thumbs": []
                 }
             }
         ]

@@ -71,14 +71,11 @@ const ProfileSettingsForm = () => {
 
     return (
         <div
-            className="max-w-2xl mx-auto mt-10"
+            className="max-w-2xl mx-auto mt-10 p-2"
         >
-            <SubHeading>
-                Settings
-            </SubHeading>
 
             <div
-                className="grid sm:grid-cols-2 gap-4 justify-center items-center"
+                className="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center items-center"
             >
                 <div>
                     {
@@ -95,7 +92,7 @@ const ProfileSettingsForm = () => {
                     }
                 </div>
                 <StyledButton
-                    name="Request password reset"
+                    name="Passwort zurücksetzen anfordern"
                     onClick={handleRequestPasswordReset}
                     type={StyledButtonType.Secondary}
                     icon={KeyIcon}
@@ -157,7 +154,7 @@ const ProfileSettingsForm = () => {
                             >
                                 <XCircleIcon className="w-4 h-4 inline" />
                                 <span className="text-xs ">
-                                    Email not verified
+                                    Email nicht verifiziert
                                 </span>
                             </div>
                         ) : (
@@ -166,7 +163,7 @@ const ProfileSettingsForm = () => {
                             >
                                 <CheckBadgeIcon className="w-4 h-4 inline" />
                                 <span className="text-xs ">
-                                    Email verified
+                                    Email verifiziert
                                 </span>
                             </div>
                         )
@@ -175,11 +172,11 @@ const ProfileSettingsForm = () => {
                     {
                         !userObj?.verified && (
                             <div
-                                className="grid w-full sm:grid-cols-2 gap-4 justify-center items-center"
+                                className="grid w-full grid-cols-1 sm:grid-cols-2 gap-4 justify-center items-center"
                             >
                                 <div />
                                 <StyledButton
-                                    name="Verify email"
+                                    name="Email verifizieren"
                                     type={StyledButtonType.Secondary}
                                     onClick={handleVerifyEmail}
                                     icon={CheckBadgeIcon}
@@ -192,16 +189,16 @@ const ProfileSettingsForm = () => {
                 </div>
 
                 <div
-                    className="grid sm:grid-cols-2 gap-4 justify-center items-center"
+                    className="grid grid-cols-1 sm:grid-cols-2 gap-4 justify-center items-center"
                 >
                     <StyledButton
-                        name="Save"
+                        name="Speichern"
                         type={StyledButtonType.Primary}
                         onClick={handleSave}
                         small
                     />
                     <StyledButton
-                        name="Cancel"
+                        name="Abbrechen"
                         type={StyledButtonType.Secondary}
                         onClick={handleCancel}
                         className="float-right"
@@ -211,11 +208,11 @@ const ProfileSettingsForm = () => {
 
 
                 <div
-                    className=" grid w-full sm:grid-cols-2 gap-4 justify-center items-center"
+                    className=" grid w-full grid-cols-1 sm:grid-cols-2 gap-4 justify-center items-center"
                 >
                     <div />
                     <StyledButton
-                        name="Delete account"
+                        name="Account löschen"
                         type={StyledButtonType.Danger}
                         onClick={() => setOpen(true)}
                         className=""
@@ -258,12 +255,12 @@ const ProfileSettingsForm = () => {
                                             </div>
                                             <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                                 <Dialog.Title as="h3" className="text-lg font-medium leading-6 text-gray-900">
-                                                    Delete account
+                                                    Account löschen
                                                 </Dialog.Title>
                                                 <div className="mt-2">
                                                     <p className="text-sm text-gray-500">
-                                                        Are you sure you want to delete your account? All of your data will be permanently
-                                                        removed. This action cannot be undone.
+                                                        Möchten Sie Ihren Account wirklich löschen?
+                                                        Dieser Vorgang kann nicht rückgängig gemacht werden.
                                                     </p>
                                                 </div>
                                             </div>

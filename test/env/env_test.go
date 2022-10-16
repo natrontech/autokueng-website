@@ -18,6 +18,14 @@ func TestInit(t *testing.T) {
 			env: map[string]string{
 				"POCKETBASE_DATA_DIR":       "/tmp/pb_data",
 				"POCKETBASE_ENCRYPTION_KEY": "POCKETBASE_ENCRYPTION_KEY",
+				"SMTP_USERNAME":             "SMTP_USERNAME",
+				"SMTP_PASSWORD":             "SMTP_PASSWORD",
+				"SMTP_HOST":                 "SMTP_HOST",
+				"SMTP_PORT":                 "SMTP_PORT",
+				"SMTP_FROM":                 "SMTP_FROM",
+				"SMTP_TO":                   "SMTP_TO",
+				"SMTP_SSL":                  "true",
+				"CAPTCHA_SECRET":            "CAPTCHA_SECRET",
 			},
 		},
 		{
@@ -25,6 +33,13 @@ func TestInit(t *testing.T) {
 			env: map[string]string{
 				"POCKETBASE_DATA_DIR":       "",
 				"POCKETBASE_ENCRYPTION_KEY": "",
+				"SMTP_USERNAME":             "",
+				"SMTP_PASSWORD":             "",
+				"SMTP_HOST":                 "",
+				"SMTP_PORT":                 "",
+				"SMTP_FROM":                 "",
+				"SMTP_TO":                   "",
+				"SMTP_SSL":                  "",
 			},
 		},
 	}

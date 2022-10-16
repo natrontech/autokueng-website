@@ -5,10 +5,15 @@ import { useUserContext } from '../contexts/userContext'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 import { Bars3Icon, BuildingStorefrontIcon, ChatBubbleBottomCenterIcon, HomeIcon, IdentificationIcon, PaperClipIcon, UserIcon, WrenchScrewdriverIcon, XMarkIcon } from '@heroicons/react/20/solid'
+import { User } from 'pocketbase'
+import { parseUserAvatarUrl } from '../lib/parser'
 
 export default function Navbar() {
 
-    const { user, loading }: any = useUserContext();
+    const { user, loading, logout }: any = useUserContext();
+
+    // parse user to user object from pocketbase
+    const userObj: User = user;
 
     const router = useRouter();
 
@@ -22,8 +27,8 @@ export default function Navbar() {
     ]
 
     const userNavigation = [
-        { name: 'Settings', href: '/settings' },
-        { name: 'Sign out', href: '/logout' },
+        { name: 'Einstellungen', onClick: () => router.push('/profile') },
+        { name: 'Abmelden', onClick: () => logout() },
     ]
 
     return (
@@ -35,7 +40,7 @@ export default function Navbar() {
                             <div className="flex">
                                 <div className="-ml-2 mr-2 flex items-center md:hidden">
                                     {/* Mobile menu button */}
-                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                                    <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-white bg-primary right-4 absolute">
                                         <span className="sr-only">Open main menu</span>
                                         {open ? (
                                             <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -45,21 +50,14 @@ export default function Navbar() {
                                     </Disclosure.Button>
                                 </div>
                                 <div className="flex-shrink-0 flex items-center">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        className="w-24 h-24 left-5 absolute sm:hidden block"
+                                        src="/images/logo/logo_text_colored_primary.svg"
+                                        alt=""
+                                    />
                                     <div
-                                        className="block lg:hidden h-10 w-20 top-2 relative m-auto mb-5"
-                                    >
-                                        <Image
-                                            className=""
-                                            src="/images/logo/logo_text_colored_primary.svg"
-                                            alt="Workflow"
-                                            objectFit="contain"
-                                            layout="fill"
-                                            priority={true}
-                                            loader={({ src }) => src as string}
-                                        />
-                                    </div>
-                                    <div
-                                        className="hidden lg:block h-10 w-28 top-2 relative m-auto mb-5"
+                                        className="hidden sm:block h-10 w-28 top-2 relative m-auto mb-5"
                                     >
                                         <Image
                                             className=""
@@ -98,7 +96,12 @@ export default function Navbar() {
                                                 <div>
                                                     <Menu.Button className=" flex text-sm rounded-full ">
                                                         <span className="sr-only">Open user menu</span>
-                                                        <UserIcon className="h-6 w-6" aria-hidden="true" />
+                                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                                        <img
+                                                            className="h-8 w-8 rounded-full"
+                                                            src={parseUserAvatarUrl(userObj)}
+                                                            alt=""
+                                                        />
                                                     </Menu.Button>
                                                 </div>
                                                 <Transition
@@ -115,10 +118,10 @@ export default function Navbar() {
                                                             <Menu.Item key={item.name}>
                                                                 {({ active }) => (
                                                                     <a
-                                                                        href={item.href}
+                                                                        onClick={item.onClick}
                                                                         className={classNames(
                                                                             active ? 'bg-gray-100' : '',
-                                                                            'block px-4 py-2 text-sm text-gray-700'
+                                                                            'block px-4 py-2 text-sm text-gray-700 cursor-pointer'
                                                                         )}
                                                                     >
                                                                         {item.name}
@@ -144,8 +147,8 @@ export default function Navbar() {
                                     as="a"
                                     href={item.href}
                                     className={classNames(
-                                        item.current ? 'bg-black text-white' : 'text-black hover:bg-gray-700 hover:text-white',
-                                        'block px-3 py-2 rounded-md text-base font-medium shadow-sm border-black border-2'
+                                        item.current ? 'bg-primary text-white' : 'text-primary hover:active:bg-primary hover:active:text-white',
+                                        'block px-3 py-2 rounded-md text-base font-medium shadow-sm border-primary border-2 transition-all duration-150 ease-in-out'
                                     )}
                                     aria-current={item.current ? 'page' : undefined}
                                 >
@@ -153,17 +156,18 @@ export default function Navbar() {
                                 </Disclosure.Button>
                             ))}
                         </div>
+                        <hr className="" />
                         {
                             user && !loading && (
-                                <div className="pt-4 pb-3 border-t border-gray-700">
+                                <div className="pt-4 pb-3 ">
                                     <div className="flex items-center px-5 sm:px-6">
                                         <div className="flex-shrink-0">
                                             {/* eslint-disable-next-line @next/next/no-img-element */}
-                                            <img className="h-10 w-10 rounded-full" src={user?.avatar_url} alt="" />
+                                            <img className="h-10 w-10 rounded-full" src={parseUserAvatarUrl(userObj)} alt="" />
                                         </div>
                                         <div className="ml-3">
-                                            <div className="text-base font-medium text-black">{user?.name}</div>
-                                            {/* <div className="text-sm font-medium text-gray-500">{user?.email}</div> */}
+                                            <div className="text-base font-medium text-black">{userObj?.profile?.name}</div>
+                                            <div className="text-sm font-medium text-gray-500">{userObj?.email}</div>
                                         </div>
                                     </div>
                                     <div className="mt-3 px-2 space-y-1 sm:px-3">
@@ -171,8 +175,8 @@ export default function Navbar() {
                                             <Disclosure.Button
                                                 key={item.name}
                                                 as="a"
-                                                href={item.href}
-                                                className="block px-3 py-2 rounded-md text-base font-medium text-black shadow-sm border-black border-2"
+                                                onClick={item.onClick}
+                                                className="block px-3 py-2 rounded-md text-base font-medium text-primary shadow-sm border-primary border-2"
                                             >
                                                 {item.name}
                                             </Disclosure.Button>
