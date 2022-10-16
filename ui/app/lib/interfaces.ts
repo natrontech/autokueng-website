@@ -10,7 +10,6 @@ interface NewsInterface extends Record {
 interface MemberInterface extends Record {
     name: string;
     role: string;
-    quote: string;
     image: string;
 }
 

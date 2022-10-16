@@ -80,7 +80,7 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
     ]
 
     return (
-        <div key={vehicle.id} className="shadow-lg flex-1 border-2 border-black bg-white relative rounded-lg">
+        <div key={vehicle.id} className="shadow-xl flex-1  bg-white relative rounded-lg">
             <Modal
                 ref={deleteModalRef}
                 {...deleteModalProps}
@@ -131,7 +131,7 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                             {vehicle?.name}
                         </div>
                     </h3>
-                    <p className="mt-1 text-sm text-gray-700 h-20 overflow-y-scroll">{vehicle?.description}</p>
+                    <p className="mt-1 text-sm text-gray-700 h-14 overflow-y-scroll scrollbar-hide">{vehicle?.description}</p>
                     <hr className="my-2 text-gray-500" />
                     {
                         specList.map((spec, index) => (

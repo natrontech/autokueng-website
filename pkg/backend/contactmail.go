@@ -3,6 +3,7 @@ package backend
 import (
 	"crypto/tls"
 	"fmt"
+	"log"
 	"net"
 	"net/mail"
 	"net/smtp"
@@ -68,43 +69,52 @@ func SendContactFormMail(c echo.Context) error {
 		}
 		conn, err := tls.Dial("tcp", servername, tlsconfig)
 		if err != nil {
+			log.Println("err1")
 			return err
 		}
 
 		con, err := smtp.NewClient(conn, host)
 		if err != nil {
+			log.Println("err2")
 			return err
 		}
 
 		if err := con.Auth(auth); err != nil {
+			log.Println("err3")
 			return err
 		}
 
 		if err := con.Mail(from.Address); err != nil {
+			log.Println("err4")
 			return err
 		}
 
 		if err := con.Rcpt(to.Address); err != nil {
+			log.Println("err5")
 			return err
 		}
 
 		wdata, err := con.Data()
 		if err != nil {
+			log.Println("err6")
 			return err
 		}
 
 		_, err = wdata.Write([]byte(message))
 		if err != nil {
+			log.Println("err7")
 			return err
 		}
 
 		err = wdata.Close()
 		if err != nil {
+			log.Println("err8")
 			return err
 		}
 
 		err = con.Quit()
 		if err != nil {
+			log.Println("err9")
 			return err
 		}
 	} else {

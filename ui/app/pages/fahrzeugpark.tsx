@@ -2,6 +2,7 @@ import { ArrowDownOnSquareIcon, PlusIcon, TableCellsIcon } from "@heroicons/reac
 import { NextPage } from "next"
 import { ClientResponseError } from "pocketbase";
 import { useEffect, useRef, useState } from "react";
+import { Toast, ToastType } from "../components/alerts/Toast";
 import FahrzeugCard from "../components/fahrzeugpark/FahrzeugCard";
 import FahrzeugCreateForm from "../components/fahrzeugpark/FahrzeugCreateForm";
 import FahrzeugForm from "../components/fahrzeugpark/FahrzeugForm";
@@ -31,6 +32,43 @@ const Fahrzeugpark: NextPage = () => {
         )()
     }, [client.records, reload])
 
+    const handleDownloadVehicles = () => {
+        // download vehicles as csv
+        const csv = vehicles.map((vehicle: VehicleInterface) => {
+            return {
+                'Name': vehicle.name,
+                'Beschreibung': vehicle.description,
+                'Kilometerstand': vehicle.km,
+                'PS': vehicle.ps,
+                'Kraftstoff': vehicle.fuel,
+                'Getriebe': vehicle.gearbox,
+                'Erstzulassung': vehicle.date,
+                'Preis': vehicle.price,
+                'Bilder': vehicle.images,
+            }
+        })
+
+
+        const replacer = (key: any, value: any) => value === null ? '' : value // specify how you want to handle null values here
+        const header = Object.keys(csv[0])
+        let csvContent = "data:text/csv;charset=utf-8," + header.join(",") + "\r";
+
+        csv.forEach((row: any) => {
+            csvContent += header.map(fieldName => JSON.stringify(row[fieldName], replacer)).join(",");
+            csvContent += "\r";
+        });
+
+        var encodedUri = encodeURI(csvContent);
+        var link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "fahrzeuge.csv");
+        document.body.appendChild(link); // Required for FF
+
+        link.click();
+
+        Toast("Fahrzeuge wurden heruntergeladen", ToastType.success)
+    }
+
     return (
         <div>
             <Heading title="FAHRZEUGPARK" subtitle="Unser Fahrzeugpark" />
@@ -59,7 +97,7 @@ const Fahrzeugpark: NextPage = () => {
                         <div className="mx-auto">
                             <StyledButton
                                 name="Aktuelle Fahrzeugliste herunterladen"
-                                onClick={() => { }}
+                                onClick={handleDownloadVehicles}
                                 type={StyledButtonType.Secondary}
                                 icon={ArrowDownOnSquareIcon}
                                 className="px-4"

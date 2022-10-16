@@ -10,7 +10,7 @@ function Service(props: Props) {
 
     return (
         <div className="">
-            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 p-4">
+            <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 gap-4 px-2 sm:px-20">
 
                 {props.services && props.services.map((service) => (
 

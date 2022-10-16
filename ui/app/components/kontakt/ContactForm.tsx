@@ -42,10 +42,9 @@ const ContactForm = () => {
             "g-recaptcha-response": captchaCode
         }
 
-        console.log(body);
-
         Api.post('/api/contactmail', body)
             .then((response) => {
+                console.log(response);
                 Toast('Nachricht erfolgreich versendet!', ToastType.success);
             }).catch((error) => {
                 Toast('Nachricht konnte nicht versendet werden!', ToastType.error);
