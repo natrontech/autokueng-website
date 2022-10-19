@@ -4,8 +4,8 @@ import { ClientResponseError } from "pocketbase";
 import { useEffect, useRef, useState } from "react";
 import { Toast, ToastType } from "../components/alerts/Toast";
 import FahrzeugCard from "../components/fahrzeugpark/FahrzeugCard";
-import FahrzeugCreateForm from "../components/fahrzeugpark/FahrzeugCreateForm";
 import FahrzeugForm from "../components/fahrzeugpark/FahrzeugForm";
+import FahrzeugImportForm from "../components/fahrzeugpark/FahrzeugImportForm";
 import StyledButton, { StyledButtonType } from "../components/general/buttons/StyledButton";
 import ModalSkeleton from "../components/general/modals/ModalSkeleton";
 import Heading from "../components/general/typo/Heading";
@@ -18,6 +18,7 @@ const Fahrzeugpark: NextPage = () => {
 
     const [vehicles, setVehicles] = useState<VehicleInterface[]>([])
     const createModalRef = useRef<any>(null)
+    const importModalRef = useRef<any>(null)
 
     useEffect(() => {
         (
@@ -75,35 +76,46 @@ const Fahrzeugpark: NextPage = () => {
             <ModalSkeleton ref={createModalRef}>
                 <FahrzeugForm modalRef={createModalRef} type="create" />
             </ModalSkeleton>
+            <ModalSkeleton ref={importModalRef}>
+                <FahrzeugImportForm modalRef={importModalRef} />
+            </ModalSkeleton>
             {
                 user && !loading && (
                     <div
-                        className="grid grid-cols-1 gap-2 justify-center items-center max-w-xl mx-auto"
+                        className=" grid sm:grid-cols-1 gap-2 justify-center items-center max-w-md mx-auto"
                     >
-                        <div className="mx-auto">
-                            <StyledButton
-                                name="Fahrzeug erfassen"
-                                onClick={() => {
-                                    if (createModalRef.current) {
-                                        createModalRef.current.open()
-                                    }
-                                }}
-                                type={StyledButtonType.Primary}
-                                icon={PlusIcon}
-                                className="px-4"
-                                small
-                            />
-                        </div>
-                        <div className="mx-auto">
-                            <StyledButton
-                                name="Aktuelle Fahrzeugliste herunterladen"
-                                onClick={handleDownloadVehicles}
-                                type={StyledButtonType.Secondary}
-                                icon={ArrowDownOnSquareIcon}
-                                className="px-4"
-                                small
-                            />
-                        </div>
+                        <StyledButton
+                            name="Fahrzeug erfassen"
+                            onClick={() => {
+                                if (createModalRef.current) {
+                                    createModalRef.current.open()
+                                }
+                            }}
+                            type={StyledButtonType.Primary}
+                            icon={PlusIcon}
+                            className="w-full"
+                            small
+                        />
+                        <StyledButton
+                            name="Fahrzeuge importieren"
+                            onClick={() => {
+                                if (importModalRef.current) {
+                                    importModalRef.current.open()
+                                }
+                            }}
+                            type={StyledButtonType.Primary}
+                            icon={TableCellsIcon}
+                            className="w-full"
+                            small
+                        />
+                        <StyledButton
+                            name="Aktuelle Fahrzeugliste herunterladen"
+                            onClick={handleDownloadVehicles}
+                            type={StyledButtonType.Secondary}
+                            icon={ArrowDownOnSquareIcon}
+                            className="w-full"
+                            small
+                        />
                     </div>
                 )
             }
