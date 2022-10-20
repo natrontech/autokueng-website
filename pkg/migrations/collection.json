@@ -475,6 +475,18 @@
                     ],
                     "thumbs": []
                 }
+            },
+            {
+                "id": "z3h1fd74",
+                "name": "mfk",
+                "type": "date",
+                "system": false,
+                "required": true,
+                "unique": false,
+                "options": {
+                    "min": "",
+                    "max": ""
+                }
             }
         ]
     }

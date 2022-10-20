@@ -30,6 +30,7 @@ const FahrzeugForm = (props: Props) => {
         const fuel = document.getElementById('fuel') as HTMLInputElement;
         const gearbox = document.getElementById('gearbox') as HTMLInputElement;
         const date = document.getElementById('date') as HTMLInputElement;
+        const mfk = document.getElementById('mfk') as HTMLInputElement;
 
         if (images) {
             for (let i = 0; i < images.length; i++) {
@@ -45,6 +46,7 @@ const FahrzeugForm = (props: Props) => {
         formData.append('fuel', fuel.value);
         formData.append('gearbox', gearbox.value);
         formData.append('date', date.value);
+        formData.append('mfk', mfk.value);
 
 
         if (props.type === "create") {
@@ -138,6 +140,15 @@ const FahrzeugForm = (props: Props) => {
                 defaultValue={
                     props.vehicle?.date &&
                     parseDateDay(props.vehicle?.date)}
+                required
+            />
+            <InputField
+                label="Letzte Motorfahrzeugkontrolle"
+                name="mfk"
+                type="date"
+                defaultValue={
+                    props.vehicle?.mfk &&
+                    parseDateDay(props.vehicle?.mfk)}
                 required
             />
             <InputField

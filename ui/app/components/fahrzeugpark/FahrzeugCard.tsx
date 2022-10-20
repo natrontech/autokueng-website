@@ -1,4 +1,4 @@
-import { faCalendar, faGasPump, faGaugeHigh, faGears, faRoad } from "@fortawesome/free-solid-svg-icons";
+import { faCalendar, faCalendarCheck, faGasPump, faGaugeHigh, faGears, faRoad } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { EnvelopeIcon, PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { BanknotesIcon } from "@heroicons/react/24/solid";
@@ -66,6 +66,11 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
             icon: faCalendar,
             title: "Erstzulassung",
             value: dateParser(vehicle?.date)
+        },
+        {
+            icon: faCalendarCheck,
+            title: "Letzte Motorfahrzeugkontrolle",
+            value: dateParser(vehicle?.mfk)
         },
         {
             icon: faGasPump,
