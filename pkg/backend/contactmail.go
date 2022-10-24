@@ -5,7 +5,6 @@ import (
 	"crypto/tls"
 	"fmt"
 	"html/template"
-	"log"
 	"net"
 	"net/mail"
 	"net/smtp"
@@ -116,7 +115,6 @@ func SendContactFormMail(c echo.Context) error {
 
 		wdata, err := con.Data()
 		if err != nil {
-			log.Println("err6")
 			return err
 		}
 

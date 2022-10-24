@@ -3,7 +3,6 @@ package util
 import (
 	"encoding/json"
 	"errors"
-	"log"
 	"net/http"
 	"time"
 
@@ -45,17 +44,15 @@ func CheckRecaptcha(recaptchaResponse string) error {
 		return err
 	}
 
-	log.Println(body.Success)
-
 	// Check recaptcha verification success.
 	if !body.Success {
 		return errors.New("unsuccessful recaptcha verify request")
 	}
 
 	// Check response score.
-	if body.Score < 0.5 {
-		return errors.New("lower received score than expected")
-	}
+	// if body.Score < 0.5 {
+	// 	return errors.New("lower received score than expected")
+	// }
 
 	return nil
 }
