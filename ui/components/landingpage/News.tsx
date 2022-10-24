@@ -23,7 +23,7 @@ const News = (props: Props) => {
 
     if (props.news?.length === 0) {
         return (
-            <div className="relative bg-white px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28 -z-10">
+            <div className="relative bg-white px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28">
                 <ModalSkeleton ref={createModalRef}>
                     <NewsForm modalRef={createModalRef} type='create' />
                 </ModalSkeleton>
