@@ -1,5 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react"
-import { ExclamationTriangleIcon, InformationCircleIcon } from "@heroicons/react/24/outline"
+import { ExclamationTriangleIcon, InformationCircleIcon, XCircleIcon } from "@heroicons/react/24/outline"
+import { XMarkIcon } from "@heroicons/react/24/solid";
 import { forwardRef, Fragment, useEffect, useImperativeHandle, useRef, useState } from "react"
 import { Toast } from "../../alerts/Toast";
 import StyledButton, { StyledButtonType } from "../buttons/StyledButton";
@@ -46,6 +47,7 @@ export const ModalSkeleton = forwardRef(({ children }: any, ref) => {
                             leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
                         >
                             <Dialog.Panel className="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
+                                <XMarkIcon className="absolute top-2 right-2 w-6 h-6 cursor-pointer" onClick={() => setOpen(false)} />
                                 {children}
                             </Dialog.Panel>
                         </Transition.Child>
