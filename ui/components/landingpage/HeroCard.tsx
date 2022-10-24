@@ -11,7 +11,7 @@ const  HeroCard = ({ data }: any) => {
     }
 
     return (
-        <div className="relative -mt-6">
+        <div className="relative -mt-6 z-20">
             <div className="absolute inset-x-0 bottom-0 h-1/2" />
             <div className=" ">
                 <div className="relative shadow-xl">
