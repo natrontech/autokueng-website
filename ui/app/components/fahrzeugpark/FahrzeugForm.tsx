@@ -6,6 +6,7 @@ import { parseImageUrlSpecific } from "../../lib/parser";
 import { Toast, ToastType } from "../alerts/Toast";
 import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton"
 import InputField from "../general/forms/InputField"
+import TextAreaField from "../general/forms/TextAreaField";
 
 interface Props {
     modalRef: any
@@ -98,10 +99,9 @@ const FahrzeugForm = (props: Props) => {
                 defaultValue={props.vehicle?.name}
                 required
             />
-            <InputField
+            <TextAreaField
                 label="Kurze Beschreibung"
                 name="description"
-                type="text"
                 defaultValue={props.vehicle?.description}
                 required
             />

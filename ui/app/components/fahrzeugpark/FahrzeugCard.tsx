@@ -27,7 +27,7 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
 
     const [images, setImages] = useState<ImageInterface[]>(parsedImages)
     const updateModalRef = useRef<any>(null);
-    const deleteModalRef = useRef<any>(null)
+    const deleteModalRef = useRef<any>(null);
     const deleteModalProps: ModalProps = {
         title: "Fahrzeug löschen",
         description: "Möchten Sie das Fahrzeug wirklich löschen?",
@@ -144,7 +144,7 @@ const FahrzeugCard = ({ vehicle }: { vehicle: VehicleInterface }) => {
                             {vehicle?.name}
                         </div>
                     </h3>
-                    <p className="mt-1 text-sm text-gray-700 h-14 overflow-y-scroll scrollbar-hide">{vehicle?.description}</p>
+                    <p className="mt-1 text-sm text-gray-700 h-14 overflow-y-scroll scrollbar-hide whitespace-pre-wrap">{vehicle?.description}</p>
                     <hr className="my-2 text-gray-500" />
                     <div
                         className="grid grid-cols-1 md:grid-cols-2 gap-2"
