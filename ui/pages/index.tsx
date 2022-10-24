@@ -63,7 +63,7 @@ const Home: NextPage = () => {
       <About />
       <Services />
       <Stats members={members} vehicles={vehicles} />
-      <Testmonial />
+      <Testmonial members={members} />
     </>
   )
 }
