@@ -1,4 +1,3 @@
-import { SVGProps } from "react";
 import { classNames } from "../../../lib/design";
 
 export interface TextareaProps {
