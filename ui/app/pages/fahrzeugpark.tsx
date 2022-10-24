@@ -1,10 +1,10 @@
 import { ArrowDownOnSquareIcon, PlusIcon, TableCellsIcon } from "@heroicons/react/24/outline";
+import { Tabs } from "flowbite-react";
 import { NextPage } from "next"
 import { ClientResponseError } from "pocketbase";
 import { useEffect, useRef, useState } from "react";
 import { Toast, ToastType } from "../components/alerts/Toast";
 import FahrzeugCard from "../components/fahrzeugpark/FahrzeugCard";
-import FahrzeugCreateForm from "../components/fahrzeugpark/FahrzeugCreateForm";
 import FahrzeugForm from "../components/fahrzeugpark/FahrzeugForm";
 import StyledButton, { StyledButtonType } from "../components/general/buttons/StyledButton";
 import ModalSkeleton from "../components/general/modals/ModalSkeleton";
@@ -30,6 +30,14 @@ const Fahrzeugpark: NextPage = () => {
                 setVehicles(records)
             }
         )()
+        const script = document.createElement("script");
+        script.src =
+            "https://www.autoscout24.ch/MVC/Content/as24-hci-desktop/js/e.min.js";
+        script.async = true;
+        document.head.appendChild(script);
+        return () => {
+            //document.head.removeChild(script);
+        };
     }, [client.records, reload])
 
     const handleDownloadVehicles = () => {
@@ -75,45 +83,61 @@ const Fahrzeugpark: NextPage = () => {
             <ModalSkeleton ref={createModalRef}>
                 <FahrzeugForm modalRef={createModalRef} type="create" />
             </ModalSkeleton>
-            {
-                user && !loading && (
-                    <div
-                        className="grid grid-cols-1 gap-2 justify-center items-center max-w-xl mx-auto"
-                    >
-                        <div className="mx-auto">
-                            <StyledButton
-                                name="Fahrzeug erfassen"
-                                onClick={() => {
-                                    if (createModalRef.current) {
-                                        createModalRef.current.open()
-                                    }
-                                }}
-                                type={StyledButtonType.Primary}
-                                icon={PlusIcon}
-                                className="px-4"
-                                small
-                            />
-                        </div>
-                        <div className="mx-auto">
-                            <StyledButton
-                                name="Aktuelle Fahrzeugliste herunterladen"
-                                onClick={handleDownloadVehicles}
-                                type={StyledButtonType.Secondary}
-                                icon={ArrowDownOnSquareIcon}
-                                className="px-4"
-                                small
-                            />
-                        </div>
-                    </div>
-                )
-            }
-            <div
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-2 sm:px-20 my-10"
+            <Tabs.Group
+                aria-label="Fahrzeugpark Tabs"
+                style="default"
+
             >
-                {vehicles?.map((vehicle) => (
-                    <FahrzeugCard key={vehicle.id} vehicle={vehicle} />
-                ))}
-            </div>
+                <Tabs.Item
+                    active={true}
+                    title="Autokueng"
+                >
+                    {
+                        user && !loading && (
+                            <div
+                                className=" grid sm:grid-cols-1 gap-2 justify-center items-center max-w-md mx-auto"
+                            >
+                                <StyledButton
+                                    name="Fahrzeug erfassen"
+                                    onClick={() => {
+                                        if (createModalRef.current) {
+                                            createModalRef.current.open()
+                                        }
+                                    }}
+                                    type={StyledButtonType.Primary}
+                                    icon={PlusIcon}
+                                    className="w-full"
+                                    small
+                                />
+                                <StyledButton
+                                    name="Aktuelle Fahrzeugliste herunterladen"
+                                    onClick={handleDownloadVehicles}
+                                    type={StyledButtonType.Secondary}
+                                    icon={ArrowDownOnSquareIcon}
+                                    className="w-full"
+                                    small
+                                />
+                            </div>
+                        )
+                    }
+                    <div
+                        className="grid grid-cols-1 sm:grid-cols-3 gap-4 px-2 sm:px-20 my-10"
+                    >
+                        {vehicles?.map((vehicle) => (
+                            <FahrzeugCard key={vehicle.id} vehicle={vehicle} />
+                        ))}
+                    </div>
+                </Tabs.Item>
+                <Tabs.Item
+                    title="Autoscout24"
+                >
+                    <div
+                        data-embedded-src="https://www.autoscout24.ch/de/hci/list?design=846&filter=1276"
+                        className="embedded-content-area"
+                    ></div>
+                </Tabs.Item>
+            </Tabs.Group>
+
         </div>
     )
 

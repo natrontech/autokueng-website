@@ -33,6 +33,7 @@ interface VehicleInterface extends Record {
     fuel: FuelType;
     gearbox: GearboxType;
     date: Date;
+    mfk: Date;
 }
 
 interface ServiceInterface extends Record {

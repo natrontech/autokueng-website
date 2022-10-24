@@ -58,14 +58,14 @@ export const UserContextProvider = ({ children }: Props) => {
             .then((data) => {
                 if (data) {
                     setUser(data.user);
-                    Toast("Logged In", ToastType.success);
+                    Toast("Angemeldet", ToastType.success);
                 }
                 router.push("/");
             })
             .catch((error) => {
                 console.log(error);
                 setError(error);
-                Toast("Login Failed", ToastType.error);
+                Toast("Anmeldung fehlgeschlagen", ToastType.error);
             })
             .finally(() => {
                 setLoading(false);
@@ -76,7 +76,7 @@ export const UserContextProvider = ({ children }: Props) => {
         client.authStore.clear();
         setUser(null);
         if (!noalert || noalert === null) {
-            Toast("Logged out", ToastType.success);
+            Toast("Abgemeldet", ToastType.success);
         }
     }
 

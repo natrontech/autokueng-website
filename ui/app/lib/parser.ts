@@ -18,6 +18,10 @@ export const formatNumber = (num: number) => {
 }
 
 export const dateParser = (date: Date) => {
+
     const d = new Date(date);
+    if (d.toLocaleDateString() === "Invalid Date") {
+        return "Kein MFK Datum";
+    }
     return d.toLocaleDateString();
 }
