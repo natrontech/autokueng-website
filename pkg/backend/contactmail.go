@@ -1,9 +1,10 @@
 package backend
 
 import (
+	"bytes"
 	"crypto/tls"
 	"fmt"
-	"log"
+	"html/template"
 	"net"
 	"net/mail"
 	"net/smtp"
@@ -39,22 +40,45 @@ func SendContactFormMail(c echo.Context) error {
 		return err
 	}
 
-	// send mail
 	from := mail.Address{Name: "(Kontaktformular) " + env.SMTP_FROM, Address: env.SMTP_FROM}
 	to := mail.Address{Name: "", Address: env.SMTP_TO}
 	subject := reqBody.Subject + " (" + reqBody.Firstname + " " + reqBody.Lastname + ") <" + reqBody.Email + ">"
-	body := fmt.Sprintf("Vorname: %s\nNachname: %s\nE-Mail: %s\nTelefon: %s\n\nNachricht: \n%s", reqBody.Firstname, reqBody.Lastname, reqBody.Email, reqBody.Phone, reqBody.Message)
 
 	headers := make(map[string]string)
 	headers["From"] = from.String()
 	headers["To"] = to.String()
 	headers["Subject"] = subject
 
+	tmpl, err := template.ParseFiles("templates/contactmail.tmpl")
+	if err != nil {
+		return err
+	}
+
+	var body bytes.Buffer
+
+	if err := tmpl.Execute(&body, struct {
+		Firstname string
+		Lastname  string
+		Email     string
+		Phone     string
+		Subject   string
+		Message   string
+	}{
+		Firstname: reqBody.Firstname,
+		Lastname:  reqBody.Lastname,
+		Email:     reqBody.Email,
+		Phone:     reqBody.Phone,
+		Subject:   reqBody.Subject,
+		Message:   reqBody.Message,
+	}); err != nil {
+		return err
+	}
+
 	message := ""
 	for k, v := range headers {
 		message += fmt.Sprintf("%s: %s\r\n", k, v)
 	}
-	message += "\r\n" + body
+	message += "\r\n" + body.String()
 
 	servername := fmt.Sprintf("%s:%s", env.SMTP_HOST, env.SMTP_PORT)
 
@@ -69,52 +93,43 @@ func SendContactFormMail(c echo.Context) error {
 		}
 		conn, err := tls.Dial("tcp", servername, tlsconfig)
 		if err != nil {
-			log.Println("err1")
 			return err
 		}
 
 		con, err := smtp.NewClient(conn, host)
 		if err != nil {
-			log.Println("err2")
 			return err
 		}
 
 		if err := con.Auth(auth); err != nil {
-			log.Println("err3")
 			return err
 		}
 
 		if err := con.Mail(from.Address); err != nil {
-			log.Println("err4")
 			return err
 		}
 
 		if err := con.Rcpt(to.Address); err != nil {
-			log.Println("err5")
 			return err
 		}
 
 		wdata, err := con.Data()
 		if err != nil {
-			log.Println("err6")
 			return err
 		}
 
 		_, err = wdata.Write([]byte(message))
 		if err != nil {
-			log.Println("err7")
 			return err
 		}
 
 		err = wdata.Close()
 		if err != nil {
-			log.Println("err8")
 			return err
 		}
 
 		err = con.Quit()
 		if err != nil {
-			log.Println("err9")
 			return err
 		}
 	} else {
