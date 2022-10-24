@@ -1,6 +1,6 @@
 import { classNames } from "../../../lib/design";
 
-export interface TextareaProps {
+export interface TextAreaProps {
     label: string;
     name: string;
     placeholder?: string;
@@ -11,7 +11,7 @@ export interface TextareaProps {
     disabled?: boolean;
 }
 
-const Textarea = (props: TextareaProps) => {
+const TextArea = (props: TextAreaProps) => {
     return (
         <div className={classNames(
             props.disabled ? "bg-gray-100 text-gray-400" : "bg-gray-200",
@@ -31,4 +31,4 @@ const Textarea = (props: TextareaProps) => {
     )
 }
 
-export default Textarea;
+export default TextArea;

@@ -6,7 +6,7 @@ import { parseImageUrlSpecific } from "../../lib/parser";
 import { Toast, ToastType } from "../alerts/Toast";
 import StyledButton, { StyledButtonType } from "../general/buttons/StyledButton"
 import InputField from "../general/forms/InputField"
-import Textarea from "../general/forms/TextArea";
+import TextArea from "../general/forms/TextArea";
 
 interface Props {
     modalRef: any
@@ -86,7 +86,7 @@ const NewsForm = (props: Props) => {
                 defaultValue={props.news?.title}
                 required
             />
-            <Textarea
+            <TextArea
                 label="Inhalt"
                 name="content"
                 defaultValue={props.news?.content}
