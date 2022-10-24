@@ -109,14 +109,6 @@ const Fahrzeugpark: NextPage = () => {
                                     className="w-full"
                                     small
                                 />
-                                <StyledButton
-                                    name="Aktuelle Fahrzeugliste herunterladen"
-                                    onClick={handleDownloadVehicles}
-                                    type={StyledButtonType.Secondary}
-                                    icon={ArrowDownOnSquareIcon}
-                                    className="w-full"
-                                    small
-                                />
                             </div>
                         )
                     }
@@ -134,7 +126,7 @@ const Fahrzeugpark: NextPage = () => {
                     <div
                         data-embedded-src="https://www.autoscout24.ch/de/hci/list?design=846&filter=1276"
                         className="embedded-content-area"
-                    ></div>
+                    />
                 </Tabs.Item>
             </Tabs.Group>
 
