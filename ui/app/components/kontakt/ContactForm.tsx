@@ -1,4 +1,5 @@
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/solid";
+import { Spinner } from "flowbite-react";
 import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import Api from "../../config/Api";
@@ -14,6 +15,8 @@ const ContactForm = () => {
     const subjectRef = useRef<HTMLInputElement>(null);
     const messageRef = useRef<HTMLTextAreaElement>(null);
 
+    const [loading, setLoading] = useState(false);
+
     const onReCAPTCHAChange = (captchaCode: string) => {
         if (!captchaCode) {
             return;
@@ -22,6 +25,7 @@ const ContactForm = () => {
     }
 
     async function handleSubmit(event: any) {
+        setLoading(true);
         event.preventDefault();
 
         const firstName: HTMLInputElement | null = firstNameRef.current;
@@ -49,7 +53,9 @@ const ContactForm = () => {
             }).catch((error) => {
                 Toast('Nachricht konnte nicht versendet werden!', ToastType.error);
                 console.log(error);
-            });
+            }).finally(() => {
+                setLoading(false);
+            })
     }
 
     return (
@@ -351,7 +357,7 @@ const ContactForm = () => {
                                         className="mt-2 w-full inline-flex items-center justify-center px-6 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:w-auto"
                                         onClick={handleSubmit}
                                     >
-                                        Senden
+                                        {loading ? <Spinner aria-label="Default status example" /> : <>Senden</>}
                                     </button>
                                 </div>
                             </form>

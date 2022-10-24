@@ -21,7 +21,6 @@ type SiteVerifyResponse struct {
 	ErrorCodes  []string  `json:"error-codes"`
 }
 
-// TODO: fix this broken function
 func CheckRecaptcha(recaptchaResponse string) error {
 	req, err := http.NewRequest("POST", siteVerifyURL, nil)
 	if err != nil {
