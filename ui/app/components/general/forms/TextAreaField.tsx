@@ -1,6 +1,6 @@
 import { classNames } from "../../../lib/design";
 
-export interface TextAreaProps {
+export interface TextAreaFieldProps {
     label: string;
     name: string;
     placeholder?: string;
@@ -11,7 +11,7 @@ export interface TextAreaProps {
     disabled?: boolean;
 }
 
-const TextArea = (props: TextAreaProps) => {
+const TextAreaField = (props: TextAreaFieldProps) => {
     return (
         <div className={classNames(
             props.disabled ? "bg-gray-100 text-gray-400" : "bg-gray-200",
@@ -31,4 +31,4 @@ const TextArea = (props: TextAreaProps) => {
     )
 }
 
-export default TextArea;
+export default TextAreaField;
