@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Bars3Icon, BuildingStorefrontIcon, ChatBubbleBottomCenterIcon, HomeIcon, IdentificationIcon, PaperClipIcon, UserIcon, WrenchScrewdriverIcon, XMarkIcon } from '@heroicons/react/20/solid'
 import { User } from 'pocketbase'
 import { parseUserAvatarUrl } from '../lib/parser'
+import Api from '../config/Api'
 
 export default function Navbar() {
 
@@ -27,7 +28,8 @@ export default function Navbar() {
     ]
 
     const userNavigation = [
-        { name: 'Einstellungen', onClick: () => router.push('/profile') },
+        { name: 'Backend', onClick: () => router.push(Api.getUri() + "/_/") },
+        { name: 'Profil', onClick: () => router.push('/profile') },
         { name: 'Abmelden', onClick: () => logout() },
     ]
 

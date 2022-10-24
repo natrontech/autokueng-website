@@ -8,13 +8,23 @@ services:
       - "8090:8090"
     volumes:
       - pb_data:/pb_data
+    environment:
+      - POCKETBASE_DATA_DIR=/pb_data
+      - CAPTCHA_SECRET=<redacted>
+      - SMTP_USERNAME=<redacted>
+      - SMTP_PASSWORD=<redacted>
+      - SMTP_HOST=<redacted>
+      - SMTP_PORT=<redacted>
+      - SMTP_SSL=true
+      - SMTP_TO=<redacted>
+      - SMTP_FROM=<redacted>
 
-  # ui:
-  #   build: ./ui/app/
-  #   ports:
-  #     - "3000:3000"
-  #   environment:
-  #     - ENV_API_URL=http://template.natron.io:8090
+  ui:
+    build: ./ui/
+    ports:
+      - "3000:3000"
+    environment:
+      - ENV_API_URL=http://localhost:8090
 
 
 volumes:

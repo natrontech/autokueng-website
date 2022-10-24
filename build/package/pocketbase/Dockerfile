@@ -16,6 +16,9 @@ RUN adduser -S autokueng-website -u 1001
 RUN apk --no-cache add ca-certificates
 
 COPY --from=build --chown=autokueng-website:autokueng-website /go/src/github.com/natrongmbh/autokueng-website/autokueng-website ./
+COPY --from=build --chown=autokueng-website:autokueng-website /go/src/github.com/natrongmbh/autokueng-website/templates ./templates
+
+RUN ls -la
 
 EXPOSE 8090
 

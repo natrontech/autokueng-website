@@ -28,7 +28,7 @@ const ProfileSettingsForm = () => {
 
         // check if values are empty
         if (displayName.value === "") {
-            Toast("Please fill in all fields", ToastType.warning);
+            Toast("Bitte alle Felder ausfüllen", ToastType.warning);
             return;
         }
     }
@@ -36,7 +36,7 @@ const ProfileSettingsForm = () => {
     const handleVerifyEmail = async () => {
         await client.users.requestVerification(userObj.email)
             .then(() => {
-                Toast("Email sent", ToastType.success);
+                Toast("Email gesendet", ToastType.success);
             })
             .catch((err: ClientResponseError) => {
                 Toast(err.message, ToastType.error);
@@ -46,7 +46,7 @@ const ProfileSettingsForm = () => {
     const handleRequestPasswordReset = async () => {
         await client.users.requestPasswordReset(userObj.email)
             .then(() => {
-                Toast("Email sent", ToastType.success);
+                Toast("Email gesendet", ToastType.success);
             })
             .catch((err: ClientResponseError) => {
                 Toast(err.message, ToastType.error);
@@ -57,7 +57,7 @@ const ProfileSettingsForm = () => {
 
         await client.users.delete(userObj.id)
             .then(() => {
-                Toast("Account deleted", ToastType.success);
+                Toast("Account gelöscht", ToastType.success);
                 logout(false);
             })
             .catch((err: ClientResponseError) => {

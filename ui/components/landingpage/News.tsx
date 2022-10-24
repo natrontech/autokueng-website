@@ -24,6 +24,9 @@ const News = (props: Props) => {
     if (props.news?.length === 0) {
         return (
             <div className="relative bg-white px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28 -z-10">
+                <ModalSkeleton ref={createModalRef}>
+                    <NewsForm modalRef={createModalRef} type='create' />
+                </ModalSkeleton>
                 <div className="absolute inset-0">
                     <div className="h-1/3 bg-white sm:h-2/3" />
                 </div>
@@ -34,6 +37,26 @@ const News = (props: Props) => {
                             Derzeit haben wir keine Neuigkeiten.
                         </p>
                     </div>
+                    {
+                        user && !loading && (
+                            <div
+                                className=" grid sm:grid-cols-1 gap-2 justify-center items-center max-w-md mx-auto my-10"
+                            >
+                                <StyledButton
+                                    name="News erstellen"
+                                    onClick={() => {
+                                        if (createModalRef.current) {
+                                            createModalRef.current.open()
+                                        }
+                                    }}
+                                    type={StyledButtonType.Primary}
+                                    icon={PlusIcon}
+                                    className="w-full"
+                                    small
+                                />
+                            </div>
+                        )
+                    }
                 </div>
             </div>
         )
