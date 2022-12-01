@@ -47,7 +47,7 @@ const Firma: NextPage = () => {
             (
                 async () => {
                     const records = await client.records.getFullList('members', 200 /* batch size */, {
-                        sort: '-created',
+                        sort: '-updated',
                     }).catch((error: ClientResponseError) => {
                         console.log(error);
                     });
