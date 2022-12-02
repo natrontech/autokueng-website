@@ -86,10 +86,17 @@ const Fahrzeugpark: NextPage = () => {
             <Tabs.Group
                 aria-label="Fahrzeugpark Tabs"
                 style="default"
-
             >
                 <Tabs.Item
+                    title="Autoscout24"
                     active={true}
+                >
+                    <div
+                        data-embedded-src="https://www.autoscout24.ch/de/hci/list?design=846&filter=1276"
+                        className="embedded-content-area"
+                    />
+                </Tabs.Item>
+                <Tabs.Item
                     title="Autokueng"
                 >
                     {
@@ -119,14 +126,6 @@ const Fahrzeugpark: NextPage = () => {
                             <FahrzeugCard key={vehicle.id} vehicle={vehicle} />
                         ))}
                     </div>
-                </Tabs.Item>
-                <Tabs.Item
-                    title="Autoscout24"
-                >
-                    <div
-                        data-embedded-src="https://www.autoscout24.ch/de/hci/list?design=846&filter=1276"
-                        className="embedded-content-area"
-                    />
                 </Tabs.Item>
             </Tabs.Group>
 
