@@ -61,7 +61,7 @@ const  HeroCard = ({ data }: any) => {
                                                     <p className="p-2">
                                                         <span className="font-bold">Montag bis Freitag:</span>
                                                         <br />
-                                                        07:30 - 12:00 / 13:00 - 18:00
+                                                        GESCHLOSSEN
                                                     </p>
                                                     <p className="p-2">
                                                         <span className="font-bold">Samstag</span>
