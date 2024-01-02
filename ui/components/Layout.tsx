@@ -5,6 +5,7 @@ import Footer from './Footer'
 import Loading from './Loading'
 import Navigation from './Navigation'
 import { XMarkIcon } from '@heroicons/react/24/solid'
+import Link from 'next/link'
 
 export default function Layout(props: any) {
   const { loading }: any = useUserContext()
@@ -14,7 +15,6 @@ export default function Layout(props: any) {
       <Navigation />
 
       <div className="absolute z-50 w-full top-16 isolate flex items-center gap-x-6 overflow-hidden bg-red-500 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
-
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <p className="text-sm leading-6 text-gray-900">
             <strong className="font-semibold">WERKSTATT GESCHLOSSEN</strong>
@@ -23,15 +23,13 @@ export default function Layout(props: any) {
             </svg>
             Wir sind nur noch <b>telefonisch</b> oder per <b>E-Mail</b> für den <b>Verkauf</b> erreichbar.
           </p>
-          <a
-            href="/kontakt"
-            className="flex-none rounded-lg bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900"
-          >
-            Kontakt <span aria-hidden="true">&rarr;</span>
-          </a>
+          <Link href="/kontakt">
+            <button className="flex-none rounded-lg bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900">
+              Kontakt <span aria-hidden="true">&rarr;</span>
+            </button>
+          </Link>
         </div>
-        <div className="flex flex-1 justify-end">
-        </div>
+        <div className="flex flex-1 justify-end"></div>
       </div>
 
       <main className="flex-1 mt-20">{React.cloneElement(props.children)}</main>
