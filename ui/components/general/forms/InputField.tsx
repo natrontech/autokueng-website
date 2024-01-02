@@ -5,7 +5,7 @@ export interface InputFieldProps {
     label: string;
     name: string;
     placeholder?: string;
-    icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+    icon?: (props: any) => any;
     onChange?: any;
     required: boolean;
     type: string;

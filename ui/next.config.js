@@ -18,6 +18,6 @@ module.exports = withPWA({
     domains: ['lh3.googleusercontent.com', 'avatars.githubusercontent.com', 'images.unsplash.com'],
   },
   env: {
-    storePicturesInWEBP: true,
+    storePicturesInWEBP: "true",
   }
 })

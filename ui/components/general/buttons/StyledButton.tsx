@@ -3,7 +3,7 @@ import { classNames } from "../../../lib/design";
 
 export interface StyledButtonProps {
     name: string;
-    icon?: (props: SVGProps<SVGSVGElement>) => JSX.Element;
+    icon?: (props: any) => any;
     iconAnimation?: boolean;
     type?: StyledButtonType;
     onClick: () => void;
