@@ -14,7 +14,7 @@ export default function Layout(props: any) {
     <div className="flex flex-col h-screen">
       <Navigation />
 
-      <div className="absolute z-50 w-full top-16 isolate flex items-center gap-x-6 overflow-hidden bg-red-500 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
+      <div className="fixed z-50 w-full bottom-0 isolate flex items-center gap-x-6 overflow-hidden bg-red-500 px-6 py-2.5 sm:px-3.5 sm:before:flex-1">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <p className="text-sm leading-6 text-gray-900">
             <strong className="font-semibold">WERKSTATT GESCHLOSSEN</strong>
