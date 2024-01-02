@@ -218,7 +218,7 @@ const ContactForm = () => {
                                         <p className="font-thin">
                                             <span className="font-normal">Montag bis Freitag:</span>
                                             <br />
-                                            07:30 - 12:00 / 13:00 - 18:00
+                                            GESCHLOSSEN
                                         </p>
                                         <p className="font-thin">
                                             <span className="font-normal">Samstag</span>
